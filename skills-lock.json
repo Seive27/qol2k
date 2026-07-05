@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "comfy-skill-frontend": {
+      "source": "Seive27/comfy-skill",
+      "sourceType": "github",
+      "skillPath": "skills/comfy-skill/SKILL.md",
+      "computedHash": "abc71ff68eaafec1f1652a47de296abb9b9e4cb122c956fe945e60d1cff0111c"
+    }
+  }
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QOL2K — Quality of Life Mods for NBA 2K14</title>
+<meta name="description" content="QOL2K is a community mod repository for NBA 2K14 — rosters, cyberfaces, courts, jerseys, and more, organized and easy to browse.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div id="site-nav"></div>
+
+<main id="main">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <p class="eyebrow">NBA 2K14 Mod Archive</p>
+      <h1>
+        <span class="line">Quality of Life</span>
+        <span class="line accent"><span id="heroType" class="type-line"></span></span>
+      </h1>
+      <p class="hero-lede">QOL2K collects and organizes the best community mods for NBA 2K14 — rosters, faces, courts, jerseys, and more — so you spend less time hunting through forums and more time playing.</p>
+      <div class="hero-actions">
+        <a href="rosters.html" class="btn btn-primary">Browse Mods</a>
+        <a href="https://www.facebook.com/share/1CEVisA8rs/" class="btn btn-facebook" target="_blank" rel="noopener">Facebook Page</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="num">12</span><span class="label">Mod Categories</span></div>
+        <div class="hero-stat"><span class="num">40+</span><span class="label">Community Mods</span></div>
+        <div class="hero-stat"><span class="num">2014</span><span class="label">Still Being Modded</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Categories -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2>Every part of the game, covered</h2>
+        </div>
+        <p>From player likeness to court design, each category is its own organized archive with search built in.</p>
+      </div>
+      <div class="cat-grid" id="catGrid"></div>
+    </div>
+  </section>
+
+  <!-- Latest Releases -->
+  <section class="section-pad tight section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Latest Releases</p>
+          <h2>Fresh off the workbench</h2>
+        </div>
+        <p>Recently added or updated mods across every category, newest first.</p>
+      </div>
+      <div class="latest-strip" id="latestGrid"></div>
+    </div>
+  </section>
+
+  <!-- Why QOL2K -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2>Built like an archive, not a forum thread</h2>
+        </div>
+      </div>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="num">01</div>
+          <h3>Organized by category</h3>
+          <p>No more scrolling through years-old forum posts. Every mod lives in a category built for it.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="num">02</div>
+          <h3>Consistent mod details</h3>
+          <p>Author, version, and update date shown up front for every single mod, every time.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="num">03</div>
+          <h3>Creator credit, always</h3>
+          <p>Original modders are credited on every release, with a dedicated credits section site-wide.</p>
+        </div>
+        <div class="why-card reveal">
+          <div class="num">04</div>
+          <h3>Built for the community</h3>
+          <p>QOL2K is community-run and community-facing — join us on Facebook to follow new releases.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credits Preview -->
+  <div id="site-credits"></div>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  qol2kRenderNav("home");
+  qol2kRenderFooter();
+  qol2kRenderCredits();
+  qol2kRenderCategoryGrid("catGrid");
+  qol2kRenderLatest("latestGrid");
+  qol2kInitTypewriter("heroType", ["Mods for 2K.", "Rosters, Updated.", "Cyberfaces, Rebuilt.", "Courts, Redrawn."]);
+  qol2kInitReveal();
+</script>
+</body>
+</html>
