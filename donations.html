@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donations — QOL2K</title>
+<meta name="description" content="Support QOL2K on Ko-fi. Your donations fund hosting, tools, and community resources that keep this mod archive running.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* =========================================================
+   Donations page — extra styles
+   ========================================================= */
+.donate-hero {
+  padding: 72px 0 60px;
+  border-bottom: 1px solid var(--panel-border-soft);
+  text-align: center;
+}
+
+.donate-hero h1 {
+  font-size: clamp(36px, 5vw, 56px);
+  margin-bottom: 16px;
+}
+
+.donate-hero p {
+  font-size: 16px;
+  color: var(--text-dim);
+  max-width: 580px;
+  margin: 0 auto 32px;
+  line-height: 1.65;
+}
+
+.donate-hero .btn-donate {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #FF5E5B;
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  padding: 16px 32px;
+  border-radius: 999px;
+  border: none;
+  box-shadow: 0 8px 28px rgba(255, 94, 91, 0.35);
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, background 0.2s ease;
+}
+
+.donate-hero .btn-donate:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 40px rgba(255, 94, 91, 0.5);
+  background: #ff6f6d;
+}
+
+.donate-hero .btn-donate svg {
+  width: 22px;
+  height: 22px;
+}
+
+.donate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.donate-item {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  padding: 28px 24px;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.donate-item:hover {
+  transform: translateY(-4px);
+  border-color: var(--red-dim);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+}
+
+.donate-item .icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  color: var(--red);
+  background: var(--red-bg);
+  border: 1px solid rgba(255, 59, 63, 0.15);
+}
+
+.donate-item .icon-wrap svg {
+  width: 22px;
+  height: 22px;
+}
+
+.donate-item h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.donate-item p {
+  font-size: 13.5px;
+  color: var(--text-dim);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.perk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.perk-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--panel-border-soft);
+  border-radius: var(--radius-md);
+  padding: 22px 20px;
+  text-align: center;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.perk-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--red-dim);
+}
+
+.perk-card .emoji {
+  font-size: 32px;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.perk-card h4 {
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+
+.perk-card p {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.faq-list {
+  display: grid;
+  gap: 16px;
+  max-width: 720px;
+}
+
+.faq-item {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 22px;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.18s ease;
+}
+
+.faq-q:hover {
+  background: var(--panel-hover);
+}
+
+.faq-q .chevron {
+  flex-shrink: 0;
+  color: var(--text-mute);
+  transition: transform 0.2s ease;
+}
+
+.faq-item.is-open .faq-q .chevron {
+  transform: rotate(180deg);
+  color: var(--red);
+}
+
+.faq-a {
+  padding: 0 22px 18px;
+  font-size: 13.5px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  display: none;
+}
+
+.faq-item.is-open .faq-a {
+  display: block;
+}
+
+.donate-final {
+  text-align: center;
+}
+
+.donate-final h2 {
+  font-size: clamp(28px, 3.6vw, 38px);
+  margin-bottom: 14px;
+}
+
+.donate-final p {
+  color: var(--text-dim);
+  max-width: 520px;
+  margin: 0 auto 28px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.donate-final .btn-cta {
+  font-size: 15px;
+  padding: 14px 32px;
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div id="site-nav"></div>
+
+<main id="main">
+
+  <!-- Donate Hero -->
+  <section class="donate-hero">
+    <div class="container">
+      <p class="eyebrow">Support the Project</p>
+      <h1>Keep QOL2K running</h1>
+      <p>Your support helps pay for hosting, domain renewal, modding tools, and coffee — lots of coffee. Every contribution, no matter how small, keeps this archive alive and up to date.</p>
+      <a href="https://ko-fi.com/opius" class="btn-donate" target="_blank" rel="noopener">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+        Support on Ko-fi
+      </a>
+    </div>
+  </section>
+
+  <!-- What donations fund -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2>What your donation funds</h2>
+        </div>
+        <p>QOL2K is a community project run by a single person. Every dollar goes back into keeping the site and the modding effort sustainable.</p>
+      </div>
+      <div class="donate-grid">
+        <div class="donate-item reveal">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <h3>Hosting & Domain</h3>
+          <p>Server costs, domain renewal, and CDN fees so the site stays fast and available for everyone in the community.</p>
+        </div>
+        <div class="donate-item reveal">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Modding Tools & Software</h3>
+          <p>Licensing for tools used to create cyberfaces, edit rosters, design courts, and produce high-quality mod content.</p>
+        </div>
+        <div class="donate-item reveal">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+          <h3>Fuel for the Modder</h3>
+          <p>Late-night modding sessions fueled by coffee and snacks. Seriously — this is where most of it goes.</p>
+        </div>
+        <div class="donate-item reveal">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Time & Upkeep</h3>
+          <p>Hours spent maintaining the site, updating mods for new seasons, testing compatibility, and organizing the archive.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Supporter perks -->
+  <section class="section-pad tight section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Supporter Perks</p>
+          <h2>What you get in return</h2>
+        </div>
+        <p>Ko-fi supporters help shape what QOL2K becomes. No paywalls — just gratitude and a few extras.</p>
+      </div>
+      <div class="perk-grid">
+        <div class="perk-card reveal">
+          <span class="emoji">🗳️</span>
+          <h4>Vote on priorities</h4>
+          <p>Supporters help decide which categories and mods get worked on next.</p>
+        </div>
+        <div class="perk-card reveal">
+          <span class="emoji">📦</span>
+          <h4>Early access previews</h4>
+          <p>Get sneak peeks of upcoming releases before they go live on the site.</p>
+        </div>
+        <div class="perk-card reveal">
+          <span class="emoji">💬</span>
+          <h4>Direct line to the modder</h4>
+          <p>Ko-fi messages go straight to me — feedback, requests, or just to say hi.</p>
+        </div>
+        <div class="perk-card reveal">
+          <span class="emoji">🙏</span>
+          <h4>Name in the credits</h4>
+          <p>Supporters are listed in a dedicated credits section on the site.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2>Frequently asked questions</h2>
+        </div>
+      </div>
+      <div class="faq-list" id="faqList">
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Is this a subscription? How does Ko-fi work?
+            <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 5l3 3 3-3"/></svg>
+          </button>
+          <div class="faq-a">Ko-fi is like buying a coffee — a one-time payment with no strings attached. You can also set up monthly support if you want, but there are no forced subscriptions or paywalls. Everything on QOL2K stays free.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Will mods ever be paywalled?
+            <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 5l3 3 3-3"/></svg>
+          </button>
+          <div class="faq-a">Never. Every mod on QOL2K will always be free and accessible to everyone. Donations are purely optional — they help cover the costs of running the site and creating content, but they're not a requirement to download or browse.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Where does the money actually go?
+            <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 5l3 3 3-3"/></svg>
+          </button>
+          <div class="faq-a">Hosting costs, domain renewal, modding software licenses, and yes — coffee. It's a single-person operation, so every contribution goes directly into keeping QOL2K running and improving the mod archive. I aim to be fully transparent about this.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            Can I request specific mods or features?
+            <svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 5l3 3 3-3"/></svg>
+          </button>
+          <div class="faq-a">Absolutely. Ko-fi supporters get priority when it comes to voting on what gets worked on next. You can also send me a message on Ko-fi or the Facebook page with your suggestions — I read every one of them.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section-pad donate-final">
+    <div class="container">
+      <div class="reveal">
+        <p class="eyebrow">Every coffee counts</p>
+        <h2>Support QOL2K</h2>
+        <p>If QOL2K has saved you time, helped you find the perfect mod, or just brought some nostalgia back — consider buying a coffee. It means the world.</p>
+        <a href="https://ko-fi.com/opius" class="btn btn-primary btn-cta" target="_blank" rel="noopener">Support on Ko-fi</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-credits"></div>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  qol2kRenderNav("donations");
+  qol2kRenderFooter();
+  qol2kRenderCredits();
+  qol2kInitReveal();
+
+  /* FAQ accordion */
+  document.getElementById("faqList")?.addEventListener("click", (e) => {
+    const btn = e.target.closest(".faq-q");
+    if (!btn) return;
+    const item = btn.closest(".faq-item");
+    const isOpen = item.classList.toggle("is-open");
+    btn.setAttribute("aria-expanded", String(isOpen));
+  });
+</script>
+</body>
+</html>

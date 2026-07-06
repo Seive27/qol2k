@@ -25,7 +25,10 @@ const QOL2K_MODS = {
     { title: "2026-27 Full Roster", desc: "Complete 2026-27 season roster update with corrected ratings, tendencies, and lineups. Full release coming after the off season.", author: "QOL2K", version: "1.0", date: "TBD", featured: true, note: "Full roster will be released on this website after the off season. Follow the Facebook page for mini-updates.", url: "https://www.facebook.com/share/1CEVisA8rs/" }
   ],
   cyberfaces: [
-    { title: "Full Cyberface Pack", desc: "Complete cyberface collection with high-detail player face models for maximum realism.", author: "Community", version: "1.0", date: "Jul 2026", featured: true, url: "https://exe.io/fullcyberface" }
+    { title: "Full Cyberface Pack", desc: "Complete cyberface collection with high-detail player face models for maximum realism.", author: "Community", version: "1.0", date: "Jul 2026", featured: true, url: "https://exe.io/fullcyberface" },
+    { title: "26-27 Rookies Pack 1", desc: "Cyberfaces for the 2026-27 rookie class — part 1.", author: "QOL2K", version: "1.0", date: "Jul 2026", url: "https://exe.io/rookiespck1" },
+    { title: "26-27 Rookies Pack 2", desc: "Cyberfaces for the 2026-27 rookie class — part 2.", author: "QOL2K", version: "1.0", date: "Jul 2026", url: "https://exe.io/rookiespck2" },
+    { title: "26-27 Rookies Pack 3", desc: "Cyberfaces for the 2026-27 rookie class — part 3.", author: "QOL2K", version: "1.0", date: "Jul 2026", url: "https://exe.io/rookiespck3" }
   ],
   portraits: [
     { title: "Portrait Pack", desc: "Redrawn player portrait artwork for menus, rosters, and in-game UI. Note: not yet updated for the latest season.", author: "Community", version: "1.0", date: "TBD", url: "https://exe.io/portraits" }

@@ -10,6 +10,7 @@
    The mobile menu renders all items flat; the desktop nav uses dropdowns. */
 const QOL2K_NAV_ITEMS = [
   { label: "Home", href: "index.html", key: "home" },
+  { label: "Donate", href: "donations.html", key: "donations" },
   { label: "Rosters", href: "rosters.html", key: "rosters" },
   {
     label: "Players", key: "players",
@@ -225,6 +226,7 @@ function qol2kRenderFooter() {
             <ul>
               <li><a href="index.html">Home</a></li>
               <li><a href="rosters.html">Categories</a></li>
+              <li><a href="donations.html">Donate</a></li>
               <li><a href="${FACEBOOK_URL}" target="_blank" rel="noopener">Facebook</a></li>
             </ul>
           </div>
@@ -244,6 +246,26 @@ function qol2kRenderFooter() {
       </div>
     </footer>
   `;
+}
+
+/* ---------------------------------------------------------
+   Donation floating CTA (Ko-fi)
+   --------------------------------------------------------- */
+function qol2kRenderDonationCTA() {
+  /* Don't show the floating CTA on the donations page itself */
+  if (window.location.pathname.includes("donations.html")) return;
+  /* Avoid duplicates if called multiple times */
+  if (document.getElementById("donationCta")) return;
+
+  const coffeeIcon = `<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 0 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V8z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>`;
+
+  const el = document.createElement("a");
+  el.id = "donationCta";
+  el.className = "donation-cta reveal";
+  el.href = "donations.html";
+  el.setAttribute("aria-label", "Support QOL2K");
+  el.innerHTML = `${coffeeIcon}<span class="cta-label">Support QOL2K</span>`;
+  document.body.appendChild(el);
 }
 
 /* ---------------------------------------------------------
@@ -580,5 +602,6 @@ function qol2kInitTypewriter(elId, words, opts = {}) {
    Boot
    --------------------------------------------------------- */
 document.addEventListener("DOMContentLoaded", () => {
+  qol2kRenderDonationCTA();
   qol2kInitReveal();
 });

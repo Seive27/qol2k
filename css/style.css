@@ -1165,6 +1165,69 @@ body.modal-lock { overflow: hidden; }
   transform: translate(-50%, 0);
 }
 
+/* =========================================================
+   Donation Floating CTA (Ko-fi)
+   ========================================================= */
+.donation-cta {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #FF5E5B;
+  color: #fff;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  padding: 14px 24px;
+  border-radius: 999px;
+  border: none;
+  box-shadow: 0 8px 28px rgba(255, 94, 91, 0.35);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, background 0.2s ease;
+  line-height: 1;
+}
+
+.donation-cta:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 40px rgba(255, 94, 91, 0.5);
+  background: #ff6f6d;
+  color: #fff;
+}
+
+.donation-cta:active {
+  transform: translateY(-1px) scale(1.01);
+}
+
+.donation-cta svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.donation-cta .cta-label {
+  white-space: nowrap;
+}
+
+@media (max-width: 520px) {
+  .donation-cta {
+    bottom: 16px;
+    right: 16px;
+    padding: 12px 16px;
+    font-size: 12px;
+  }
+  .donation-cta .cta-label {
+    display: none;
+  }
+  .donation-cta svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
 /* Skip link */
 .skip-link {
   position: absolute;
