@@ -16,6 +16,7 @@ const QOL2K_NAV_ITEMS = [
     label: "Players", key: "players",
     children: [
       { label: "Cyberfaces", href: "cyberfaces.html", key: "cyberfaces" },
+      { label: "Cyberface Search", href: "cyberface-search.html", key: "cyberface-search" },
       { label: "Portraits", href: "portraits.html", key: "portraits" },
       { label: "Jerseys", href: "jerseys.html", key: "jerseys" },
       { label: "Shoes", href: "shoes.html", key: "shoes" }
