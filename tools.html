@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NBA 2K14 Modding Tools — QOL2K</title>
+<meta name="description" content="A collection of software and utilities used by the NBA 2K14 modding community to create rosters, cyberfaces, courts, jerseys, audio modifications, and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* Additional styles specific to the Tools page */
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 18px;
+  }
+
+  .tool-card {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+
+  .tool-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--panel-border);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .tool-card.featured {
+    border-color: rgba(255, 255, 255, 0.15);
+  }
+
+  .tool-thumb {
+    aspect-ratio: 16/9;
+    background:
+      linear-gradient(135deg, rgba(80, 140, 255, 0.08), rgba(200, 160, 50, 0.05)),
+      repeating-linear-gradient(45deg, #181c22, #181c22 10px, #161a1f 10px, #161a1f 20px);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .tool-thumb::after {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px dashed rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .tool-thumb-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    transition: transform 0.4s ease;
+  }
+
+  .tool-card:hover .tool-thumb-img {
+    transform: scale(1.04);
+  }
+
+  .tool-body {
+    padding: 18px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .tool-body h3 {
+    font-size: 17px;
+    letter-spacing: 0.02em;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    font-weight: 600;
+    line-height: 1.05;
+  }
+
+  .tool-body .tool-desc {
+    font-size: 13.5px;
+    color: var(--text-dim);
+    margin: 0;
+    flex: 1;
+    line-height: 1.55;
+  }
+
+  .tool-actions {
+    display: flex;
+    gap: 8px;
+    padding: 0 20px 18px;
+  }
+
+  /* Featured flag */
+  .tool-featured-flag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 999px;
+    z-index: 2;
+    pointer-events: none;
+    background: var(--white-accent);
+    color: var(--red);
+  }
+
+  /* Why tools section */
+  .why-text {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  .why-text p {
+    font-size: 15px;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* Search empty state for tools */
+  .tool-empty {
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--text-mute);
+    border: 1px dashed var(--panel-border);
+    border-radius: var(--radius-md);
+    display: none;
+    font-family: var(--font-body);
+  }
+  .tool-empty.show { display: block; }
+
+  @media (max-width: 640px) {
+    .tool-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div id="site-nav"></div>
+
+<main id="main">
+
+  <!-- Page Header -->
+  <section class="page-header">
+    <div class="container">
+      <p class="crumb"><a href="index.html">Home</a> / Tools</p>
+      <h1>NBA 2K14 Modding Tools</h1>
+      <p>A collection of software and utilities used by the NBA 2K14 modding community to create rosters, cyberfaces, courts, jerseys, audio modifications, presentations, and other game enhancements.</p>
+    </div>
+  </section>
+
+  <!-- Tool Grid -->
+  <section class="section-pad tight">
+    <div class="container">
+      <!-- Search bar -->
+      <div class="toolbar">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="text" id="toolSearch" placeholder="Search tools...">
+        </div>
+        <span class="filter-note">Filter by tool name or description</span>
+      </div>
+
+      <div class="tool-grid" id="toolGrid">
+
+        <!-- Tool 1: RED MC (Featured) -->
+        <div class="tool-card featured reveal" data-tool-name="red mc" data-tool-desc="The primary roster editing tool for NBA 2K14. RED MC allows users to modify players teams contracts ratings tendencies accessories cyberface assignments draft classes and many other roster-related elements.">
+          <div class="tool-thumb">
+            <span class="tool-featured-flag">Featured Tool</span>
+            <img class="tool-thumb-img" src="images/redmc.png" alt="RED MC" loading="lazy">
+          </div>
+          <div class="tool-body">
+            <h3>RED MC</h3>
+            <p class="tool-desc">The primary roster editing tool for NBA 2K14. RED MC allows users to modify players, teams, contracts, ratings, tendencies, accessories, cyberface assignments, draft classes, and many other roster-related elements.</p>
+          </div>
+          <div class="tool-actions">
+            <a href="https://www.mediafire.com/file/f9cspfiuqb6oy98/RED_MC_v.5.0.0.0.zip/file" class="btn-download" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+              Download Tool
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 2: 3DM Mod Tool -->
+        <div class="tool-card reveal" data-tool-name="3dm mod tool" data-tool-desc="A file archive editor used to open and modify NBA 2K14 IFF files. Commonly used for extracting and importing textures models uniforms courts portraits and other game assets.">
+          <div class="tool-thumb">
+            <img class="tool-thumb-img" src="images/3DM4.png" alt="3DM Mod Tool" loading="lazy">
+          </div>
+          <div class="tool-body">
+            <h3>3DM Mod Tool</h3>
+            <p class="tool-desc">A file archive editor used to open and modify NBA 2K14 IFF files. Commonly used for extracting and importing textures, models, uniforms, courts, portraits, and other game assets.</p>
+          </div>
+          <div class="tool-actions">
+            <a href="https://www.mediafire.com/file/wr9zsayqhvjn3g6/3DM4.83.rar/file" class="btn-download" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+              Download Tool
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 3: F1X4R -->
+        <div class="tool-card reveal" data-tool-name="f1x4r" data-tool-desc="An advanced executable patching utility for NBA 2K14. F1X4R allows modders to modify game-level behavior by editing values and functions within the executable making it possible to implement features remove limitations apply gameplay fixes and support custom modifications.">
+          <div class="tool-thumb">
+            <img class="tool-thumb-img" src="images/f1x4r.png" alt="F1X4R" loading="lazy">
+          </div>
+          <div class="tool-body">
+            <h3>F1X4R</h3>
+            <p class="tool-desc">An advanced executable patching utility for NBA 2K14. F1X4R allows modders to modify game-level behavior by editing values and functions within the executable, making it possible to implement features, remove limitations, apply gameplay fixes, and support custom modifications that cannot be achieved through traditional roster or asset editing tools.</p>
+          </div>
+          <div class="tool-actions">
+            <a href="https://www.mediafire.com/file/mns9wkd58e9xkc3/F1X4R.exe/file" class="btn-download" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+              Download Tool
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 4: Blender -->
+        <div class="tool-card reveal" data-tool-name="blender" data-tool-desc="A professional 3D modeling and rendering software widely used by NBA 2K14 modders for creating and editing cyberface models accessories and custom 3D assets.">
+          <div class="tool-thumb">
+            <img class="tool-thumb-img" src="images/blender.jpg" alt="Blender" loading="lazy">
+          </div>
+          <div class="tool-body">
+            <h3>Blender</h3>
+            <p class="tool-desc">A professional 3D modeling and rendering software widely used by NBA 2K14 modders for creating and editing cyberface models, accessories, and custom 3D assets.</p>
+          </div>
+          <div class="tool-actions">
+            <a href="https://www.mediafire.com/file/mpw6ty6ec110x37/blender-2.79-windows64.zip/file" class="btn-download" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+              Download Tool
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 5: Audacity -->
+        <div class="tool-card reveal" data-tool-name="audacity" data-tool-desc="A free audio editing software used for recording editing cleaning and exporting sound files. Frequently used for creating custom arena sounds commentary projects and other audio modifications for NBA 2K14.">
+          <div class="tool-thumb">
+            <img class="tool-thumb-img" src="images/audacity.png" alt="Audacity" loading="lazy">
+          </div>
+          <div class="tool-body">
+            <h3>Audacity</h3>
+            <p class="tool-desc">A free audio editing software used for recording, editing, cleaning, and exporting sound files. Frequently used for creating custom arena sounds, commentary projects, and other audio modifications for NBA 2K14.</p>
+          </div>
+          <div class="tool-actions">
+            <a href="https://www.mediafire.com/file/6jux7jyy174rtsh/audacity-win-3.7.8-64bit.exe/file" class="btn-download" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+              Download Tool
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 6: NBA 2K Audio Editor -->
+        <div class="tool-card reveal" data-tool-name="nba 2k audio editor" data-tool-desc="A specialized utility designed to extract preview organize and replace NBA 2K14 audio files. Commonly used for commentary mods presentation packs arena sounds and custom audio projects.">
+          <div class="tool-thumb">
+            <img class="tool-thumb-img" src="images/nba2kaudioeditor.png" alt="NBA 2K Audio Editor" loading="lazy">
+          </div>
+          <div class="tool-body">
+            <h3>NBA 2K Audio Editor</h3>
+            <p class="tool-desc">A specialized utility designed to extract, preview, organize, and replace NBA 2K14 audio files. Commonly used for commentary mods, presentation packs, arena sounds, and custom audio projects.</p>
+          </div>
+          <div class="tool-actions">
+            <a href="https://www.mediafire.com/file/uz45d3aehlo0tij/NBA_2K_Audio_Editor_0.5.0.2.zip/file" class="btn-download" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+              Download Tool
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 7: QOL2K Audio Studio -->
+        <div class="tool-card reveal" data-tool-name="qol2k audio studio" data-tool-desc="A custom QOL2K utility developed to simplify NBA 2K14 audio modding workflows. Designed to help modders manage organize and prepare audio assets more efficiently for use in NBA 2K14 projects.">
+          <div class="tool-thumb">
+            <img class="tool-thumb-img" src="images/qol2kaudiostudio.png" alt="QOL2K Audio Studio" loading="lazy">
+          </div>
+          <div class="tool-body">
+            <h3>QOL2K Audio Studio</h3>
+            <p class="tool-desc">A custom QOL2K utility developed to simplify NBA 2K14 audio modding workflows. Designed to help modders manage, organize, and prepare audio assets more efficiently for use in NBA 2K14 projects.</p>
+          </div>
+          <div class="tool-actions">
+            <a href="https://www.mediafire.com/file/w73uk4xvc8eg8zb/QOL2K-Audio-Studio-v1.0.zip.zip/file" class="btn-download" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+              Download Tool
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 8: Photoshop 2023 -->
+        <div class="tool-card reveal" data-tool-name="photoshop 2023 photoshop cc" data-tool-desc="Industry-standard image editing software used by NBA 2K14 modders for creating editing and optimizing textures cyberfaces portraits jerseys courts and other graphical assets.">
+          <div class="tool-thumb">
+            <img class="tool-thumb-img" src="images/photoshop.jpg" alt="Photoshop 2023" loading="lazy">
+          </div>
+          <div class="tool-body">
+            <h3>Photoshop 2023</h3>
+            <p class="tool-desc">Industry-standard image editing software used by NBA 2K14 modders for creating, editing, and optimizing textures, cyberfaces, portraits, jerseys, courts, and other graphical assets.</p>
+          </div>
+          <div class="tool-actions">
+            <a href="https://getintopc.com/softwares/graphic-design/adobe-photoshop-2023-free-download-1758627/" class="btn-download" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+              Download Tool
+            </a>
+          </div>
+        </div>
+
+        <!-- Tool 9: DDS Plugin for Photoshop -->
+        <div class="tool-card reveal" data-tool-name="dds plugin for photoshop nvidia texture tools exporter dds photoshop plugin" data-tool-desc="A plugin for Adobe Photoshop that enables opening editing and saving DDS texture files. Essential for NBA 2K14 modders working with compressed game textures including cyberfaces uniforms courts and other DDS-format assets.">
+          <div class="tool-thumb">
+            <img class="tool-thumb-img" src="images/dds.png" alt="DDS Plugin for Photoshop" loading="lazy">
+          </div>
+          <div class="tool-body">
+            <h3>DDS Plugin for Photoshop</h3>
+            <p class="tool-desc">A plugin for Adobe Photoshop that enables opening, editing, and saving DDS texture files. Essential for NBA 2K14 modders working with compressed game textures including cyberfaces, uniforms, courts, and other DDS-format assets.</p>
+          </div>
+          <div class="tool-actions">
+            <a href="https://developer.nvidia.com/texture-tools-exporter" class="btn-download" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+              Download Tool
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Empty state -->
+      <div class="tool-empty" id="toolEmpty">No tools match your search yet.</div>
+    </div>
+  </section>
+
+  <!-- Why These Tools -->
+  <section class="section-pad section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <h2>Why These Tools?</h2>
+        </div>
+      </div>
+      <div class="why-text reveal">
+        <p>NBA 2K14 continues to have one of the most active modding communities in sports gaming. These tools form the foundation of the development process used to create custom rosters, cyberfaces, jerseys, courts, scoreboards, presentations, audio enhancements, and many other modifications that keep the game alive today.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credits -->
+  <div id="site-credits"></div>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  qol2kRenderNav("tools");
+  qol2kRenderFooter();
+  qol2kRenderCredits("site-credits", {
+    text: "Special thanks to the developers and contributors who created and maintained the tools used by the NBA 2K14 modding community. Their work has made it possible for thousands of users to continue creating and enjoying new content for NBA 2K14. Full credits and official download sources will be added in a future update.",
+    list: ["RED MC", "3DM Mod Tool", "F1X4R", "Blender", "Audacity", "NBA 2K Audio Editor", "QOL2K Audio Studio", "Photoshop 2023", "DDS Plugin for Photoshop"]
+  });
+  qol2kInitReveal();
+
+  // Tool search
+  (function() {
+    var input = document.getElementById("toolSearch");
+    var grid = document.getElementById("toolGrid");
+    var empty = document.getElementById("toolEmpty");
+    if (!input || !grid) return;
+
+    input.addEventListener("input", function() {
+      var q = input.value.trim().toLowerCase();
+      var visibleCount = 0;
+      grid.querySelectorAll(".tool-card").forEach(function(card) {
+        var name = card.getAttribute("data-tool-name") || "";
+        var desc = card.getAttribute("data-tool-desc") || "";
+        var matches = !q || name.indexOf(q) !== -1 || desc.indexOf(q) !== -1;
+        card.style.display = matches ? "" : "none";
+        if (matches) visibleCount++;
+      });
+      if (empty) empty.classList.toggle("show", visibleCount === 0);
+    });
+  })();
+</script>
+</body>
+</html>

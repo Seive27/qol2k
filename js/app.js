@@ -11,6 +11,7 @@
 const QOL2K_NAV_ITEMS = [
   { label: "Home", href: "index.html", key: "home" },
   { label: "Donate", href: "donations.html", key: "donations" },
+  { label: "Tools", href: "tools.html", key: "tools" },
   { label: "Rosters", href: "rosters.html", key: "rosters" },
   {
     label: "Players", key: "players",
@@ -272,26 +273,40 @@ function qol2kRenderDonationCTA() {
 /* ---------------------------------------------------------
    Credits block (shared across home + category pages)
    --------------------------------------------------------- */
-function qol2kRenderCredits(mountId = "site-credits") {
+function qol2kRenderCredits(mountId = "site-credits", customContent) {
   const mount = document.getElementById(mountId);
   if (!mount) return;
-  mount.innerHTML = `
-    <section class="credits-block" id="credits">
-      <div class="container">
-        <div class="credits-panel reveal">
-          <h2>Credits</h2>
-          <p>QOL2K respects the work of the NBA 2K14 modding community. Featured mods are created by talented community modders. Full credits and author information are shown on each mod card.</p>
-          <ul class="credits-list">
-            <li>Kamatis 2K</li>
-            <li>Mackubex</li>
-            <li>AJF2K</li>
-            <li>OMEL2K</li>
-            <li>Community Contributors</li>
-          </ul>
+  if (customContent) {
+    mount.innerHTML = `
+      <section class="credits-block">
+        <div class="container">
+          <div class="credits-panel reveal">
+            <h2>Credits</h2>
+            <p>${customContent.text}</p>
+            ${customContent.list ? `<ul class="credits-list">${customContent.list.map(item => `<li>${item}</li>`).join("")}</ul>` : ""}
+          </div>
         </div>
-      </div>
-    </section>
-  `;
+      </section>
+    `;
+  } else {
+    mount.innerHTML = `
+      <section class="credits-block" id="credits">
+        <div class="container">
+          <div class="credits-panel reveal">
+            <h2>Credits</h2>
+            <p>QOL2K respects the work of the NBA 2K14 modding community. Featured mods are created by talented community modders. Full credits and author information are shown on each mod card.</p>
+            <ul class="credits-list">
+              <li>Kamatis 2K</li>
+              <li>Mackubex</li>
+              <li>AJF2K</li>
+              <li>OMEL2K</li>
+              <li>Community Contributors</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    `;
+  }
 }
 
 /* ---------------------------------------------------------
