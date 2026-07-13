@@ -66,7 +66,7 @@ const QOL2K_CATEGORIES = [
 // Each entry can include: url (download link), credits (HTML), note (extra text).
 const QOL2K_MODS = {
   rosters: [
-    { title: "2026-27 Full Roster", desc: "Complete 2026-27 season roster update with corrected ratings, tendencies, and lineups. Full release coming after the off season.", author: "QOL2K", version: "1.0", date: "TBD", featured: true, note: "Full roster will be released on this website after the off season. Follow the Facebook page for mini-updates.", url: "https://www.facebook.com/share/1CEVisA8rs/" }
+    { title: "NBA 2K14 Complete Roster Package", desc: "The definitive roster update featuring Exhibition, MyCAREER, Association, and Draft Class files. Includes updated teams, ratings, contracts, rotations, career mode support, franchise compatibility, and multiple draft classes.", author: "QOL2K", version: "2026.1", date: "Jul 2026", featured: true, note: "Complete package: Exhibition Roster + MyCAREER Roster + Association Roster + Draft Classes - all in one download.", url: "https://exe.io/qol2kfullros" }
   ],
   cyberfaces: [
     { title: "Full Cyberface Pack", desc: "Complete cyberface collection with high-detail player face models for maximum realism.", author: "Community", version: "1.0", date: "Jul 2026", featured: true, url: "https://exe.io/fullcyberface" },
