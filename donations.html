@@ -36,15 +36,15 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: #FF5E5B;
+  background: var(--red);
   color: #fff;
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 16px;
   padding: 16px 32px;
   border-radius: 999px;
-  border: none;
-  box-shadow: 0 8px 28px rgba(255, 94, 91, 0.35);
+  border: 1px solid var(--red-dim);
+  box-shadow: 0 8px 28px var(--red-glow);
   cursor: pointer;
   text-decoration: none;
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, background 0.2s ease;
@@ -52,8 +52,8 @@
 
 .donate-hero .btn-donate:hover {
   transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 14px 40px rgba(255, 94, 91, 0.5);
-  background: #ff6f6d;
+  box-shadow: 0 14px 40px var(--red-glow);
+  background: #ff1a1a;
 }
 
 .donate-hero .btn-donate svg {
@@ -91,7 +91,7 @@
   margin-bottom: 16px;
   color: var(--red);
   background: var(--red-bg);
-  border: 1px solid rgba(255, 59, 63, 0.15);
+  border: 1px solid var(--red-dim);
 }
 
 .donate-item .icon-wrap svg {

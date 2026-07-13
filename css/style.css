@@ -1,26 +1,26 @@
 /* =========================================================
-   QOL2K — Quality of Life Mods for NBA 2K14
-   Comfy Frontend Redesign — Dark / Red Accent
-   Dial: DESIGN_VARIANCE:7  MOTION_INTENSITY:5  VISUAL_DENSITY:4
+   QOL2K — Quality of Life Mods
+   Multi-Game Mod Hub
+   Palette: #0A0A0A / #111111 / #FFFFFF / #FF2D2D
    ========================================================= */
 
 :root {
-  /* Color — off-black base, red/white accents */
-  --bg: #0c0d0f;
-  --bg-raised: #111316;
-  --panel: #16191d;
-  --panel-hover: #1c2026;
-  --panel-border: #252a32;
-  --panel-border-soft: #1e2229;
-  --text: #e8ebf0;
-  --text-dim: #949ba6;
-  --text-mute: #5c6470;
-  --red: #ff3b3f;
-  --red-dim: #c4262b;
-  --red-bg: rgba(255, 59, 63, 0.08);
-  --red-glow: rgba(255, 59, 63, 0.30);
-  --red-subtle: rgba(255, 59, 63, 0.12);
-  --white-accent: #ffffff;
+  /* Color — brand palette */
+  --bg: #0A0A0A;
+  --bg-raised: #111111;
+  --panel: #181818;
+  --panel-hover: #1E1E1E;
+  --panel-border: #2A2A2A;
+  --panel-border-soft: #1E1E1E;
+  --text: #FFFFFF;
+  --text-dim: #B0B0B0;
+  --text-mute: #606060;
+  --red: #FF2D2D;
+  --red-dim: #CC2424;
+  --red-bg: rgba(255, 45, 45, 0.08);
+  --red-glow: rgba(255, 45, 45, 0.30);
+  --red-subtle: rgba(255, 45, 45, 0.12);
+  --white-accent: #FFFFFF;
   --white-dim: rgba(255, 255, 255, 0.4);
 
   /* Type */
@@ -54,9 +54,6 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background: var(--bg);
-  background-image:
-    radial-gradient(ellipse at 20% 0%, rgba(255, 59, 63, 0.05), transparent 50%),
-    radial-gradient(ellipse at 80% 10%, rgba(255, 255, 255, 0.02), transparent 40%);
   color: var(--text);
   font-family: var(--font-body);
   line-height: 1.6;
@@ -125,8 +122,20 @@ section { position: relative; }
   border-color: var(--red-dim);
 }
 .btn-primary:hover {
-  background: #ff5256;
+  background: #ff1a1a;
   box-shadow: 0 8px 28px var(--red-glow);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: transparent;
+  border-color: var(--panel-border);
+  color: var(--text);
+}
+.btn-secondary:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: var(--red-bg);
   transform: translateY(-2px);
 }
 
@@ -151,7 +160,7 @@ section { position: relative; }
   height: var(--nav-height);
   display: flex;
   align-items: center;
-  background: rgba(12, 13, 15, 0.78);
+  background: rgba(10, 10, 10, 0.78);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
@@ -159,7 +168,7 @@ section { position: relative; }
 }
 
 .nav.is-scrolled {
-  background: rgba(8, 9, 11, 0.94);
+  background: rgba(8, 8, 8, 0.94);
   border-bottom-color: var(--panel-border-soft);
 }
 
@@ -168,6 +177,51 @@ section { position: relative; }
   align-items: center;
   justify-content: space-between;
   width: 100%;
+}
+
+.nav-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  min-width: 0;
+}
+
+/* Breadcrumb context indicator next to logo */
+.nav-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 12px;
+  padding-left: 12px;
+  border-left: 1px solid var(--panel-border);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.nav-crumb {
+  color: var(--text-mute);
+  transition: color 0.15s ease;
+}
+
+.nav-crumb.current {
+  color: var(--red);
+}
+
+.nav-sep {
+  color: var(--panel-border);
+  font-size: 9px;
+  user-select: none;
+}
+
+@media (max-width: 640px) {
+  .nav-breadcrumb {
+    display: none;
+  }
 }
 
 .brand {
@@ -343,7 +397,7 @@ section { position: relative; }
 .mobile-menu {
   position: fixed;
   inset: var(--nav-height) 0 0 0;
-  background: rgba(8, 9, 11, 0.98);
+  background: rgba(8, 8, 8, 0.98);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   z-index: 490;
@@ -381,95 +435,1308 @@ section { position: relative; }
 }
 
 /* =========================================================
-   Hero
+   Hero — Video Background (homepage only)
    ========================================================= */
-.hero {
-  padding: 80px 0 72px;
+.hero-video-wrap {
   position: relative;
+  width: 100%;
+  height: 460px;
   overflow: hidden;
   border-bottom: 1px solid var(--panel-border-soft);
 }
 
-.hero::after {
-  content: "";
+.hero-video-wrap video {
   position: absolute;
-  right: -6%;
-  top: 8%;
-  width: 44%;
-  height: 360px;
-  background:
-    radial-gradient(ellipse at center, rgba(255, 59, 63, 0.08), transparent 60%),
-    repeating-linear-gradient(
-      105deg,
-      transparent,
-      transparent 32px,
-      rgba(255, 59, 63, 0.04) 32px,
-      rgba(255, 59, 63, 0.04) 34px
-    );
-  pointer-events: none;
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0.4), transparent);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  z-index: 0;
 }
 
-.hero-inner {
-  max-width: 740px;
-  position: relative;
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.60) 0%,
+    rgba(10, 10, 10, 0.35) 50%,
+    rgba(10, 10, 10, 0.75) 100%
+  );
   z-index: 1;
 }
 
-.hero h1 {
-  font-size: clamp(42px, 6.8vw, 78px);
-  line-height: 1.02;
-  margin-bottom: 18px;
+.hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 28px;
 }
-.hero h1 .line { display: block; }
-.hero h1 .accent { color: var(--red); }
 
-.hero-lede {
-  font-size: 16.5px;
+.hero-content .tagline {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 14px;
+}
+
+.hero-content h1 {
+  font-size: clamp(48px, 7vw, 82px);
+  line-height: 1;
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+
+.hero-content .hero-sub {
+  font-size: clamp(15px, 1.8vw, 19px);
   color: var(--text-dim);
-  max-width: 540px;
-  margin-bottom: 32px;
-  line-height: 1.65;
+  max-width: 620px;
+  margin-bottom: 28px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: var(--font-body);
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 44px;
+  gap: 14px;
+  justify-content: center;
 }
 
-.hero-stats {
+@media (max-width: 768px) {
+  .hero-video-wrap {
+    height: 320px;
+  }
+  .hero-content h1 {
+    font-size: 36px;
+  }
+  .hero-content .hero-sub {
+    font-size: 14px;
+  }
+}
+
+/* =========================================================
+   Game Hub Cards (homepage)
+   ========================================================= */
+.game-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.game-card {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  padding: 36px 32px 32px;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   display: flex;
-  flex-wrap: wrap;
-  gap: 36px;
+  flex-direction: column;
 }
-.hero-stat {
-  font-family: var(--font-mono);
+
+.game-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
 }
-.hero-stat .num {
+
+.game-card:hover::before {
+  transform: scaleX(1);
+}
+
+.game-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--red-dim);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
+  background: #1C1C1C;
+}
+
+/* Subtle glow per game card */
+.game-card[data-game="nba2k14"]:hover {
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 45, 45, 0.08);
+}
+.game-card[data-game="nba2k23"]:hover {
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 160, 255, 0.06);
+}
+.game-card[data-game="pba2k"]:hover {
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 45, 45, 0.06);
+}
+.game-card[data-game="fiba2k"]:hover {
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 200, 100, 0.06);
+}
+
+.game-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
   font-family: var(--font-display);
-  font-size: 32px;
+  font-size: 22px;
+  font-weight: 700;
+  border: 1px solid var(--panel-border);
+  color: var(--text);
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.game-card[data-game="nba2k14"] .game-card-icon {
+  background: rgba(255, 45, 45, 0.1);
+  border-color: rgba(255, 45, 45, 0.3);
+  color: var(--red);
+}
+.game-card[data-game="nba2k23"] .game-card-icon {
+  background: rgba(0, 160, 255, 0.08);
+  border-color: rgba(0, 160, 255, 0.25);
+  color: #60B0FF;
+}
+.game-card[data-game="pba2k"] .game-card-icon {
+  background: var(--red-bg);
+  border-color: var(--red-dim);
+  color: var(--red);
+}
+.game-card[data-game="fiba2k"] .game-card-icon {
+  background: rgba(0, 200, 100, 0.08);
+  border-color: rgba(0, 200, 100, 0.25);
+  color: #00D864;
+}
+
+.game-card h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  letter-spacing: 0.04em;
+}
+
+.game-card p {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin: 0 0 auto;
+  line-height: 1.55;
+  max-width: 400px;
+}
+
+.game-card .game-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+
+.game-card .game-link::after {
+  content: "→";
+  transition: transform 0.2s ease;
+}
+
+.game-card:hover .game-link::after {
+  transform: translateX(6px);
+}
+
+.game-card[data-game="nba2k14"] .game-link { color: var(--red); }
+.game-card[data-game="nba2k23"] .game-link { color: #60B0FF; }
+.game-card[data-game="pba2k"] .game-link { color: var(--red); }
+.game-card[data-game="fiba2k"] .game-link { color: #00D864; }
+
+/* Coming Soon badge */
+.game-coming-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 999px;
+  z-index: 2;
+  background: var(--panel);
+  color: var(--text-mute);
+  border: 1px solid var(--panel-border);
+  transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.game-card.coming-soon {
+  cursor: default;
+}
+
+.game-card.coming-soon:hover {
+  transform: none;
+  box-shadow: none;
+  background: var(--panel);
+  border-color: var(--panel-border);
+}
+
+.game-card.coming-soon::before {
+  background: var(--panel-border);
+}
+
+.game-card.coming-soon:hover::before {
+  transform: scaleX(0);
+}
+
+.game-card.coming-soon .game-link {
+  color: var(--text-mute) !important;
+}
+
+.game-card.coming-soon .game-link::after {
+  display: none;
+}
+
+.game-card.coming-soon:hover .game-link::after {
+  transform: none;
+}
+
+@media (max-width: 700px) {
+  .game-hub-grid {
+    grid-template-columns: 1fr;
+  }
+  .game-card {
+    padding: 28px 24px;
+  }
+  .game-card h3 {
+    font-size: 20px;
+  }
+}
+
+/* =========================================================
+   Stats Strip (homepage)
+   ========================================================= */
+.home-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--panel-border-soft);
+  border-bottom: 1px solid var(--panel-border-soft);
+}
+
+.home-stat {
+  background: var(--bg);
+  padding: 40px 24px 36px;
+  text-align: center;
+  transition: background 0.25s ease;
+}
+
+.home-stat:hover {
+  background: var(--bg-raised);
+}
+
+.home-stat .num {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 3.2vw, 44px);
+  font-weight: 700;
   color: var(--text);
   display: block;
   line-height: 1;
+  margin-bottom: 8px;
   letter-spacing: 0.02em;
 }
-.hero-stat .label {
-  font-size: 10.5px;
+
+.home-stat .num .red {
+  color: var(--red);
+}
+
+.home-stat .label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  display: block;
+  line-height: 1.4;
+}
+
+@media (max-width: 700px) {
+  .home-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .home-stat {
+    padding: 28px 16px 24px;
+  }
+}
+
+@media (max-width: 420px) {
+  .home-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   Featured Projects (homepage)
+   ========================================================= */
+.feat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.feat-card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.3s ease;
+}
+
+.feat-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--red-dim);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+.feat-thumb {
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, rgba(255, 45, 45, 0.08), rgba(255, 200, 50, 0.04));
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.feat-thumb-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: transform 0.4s ease;
+}
+
+.feat-card:hover .feat-thumb-img {
+  transform: scale(1.05);
+}
+
+.feat-tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  z-index: 2;
+  background: var(--red);
+  color: #fff;
+}
+
+.feat-body {
+  padding: 18px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.feat-body h3 {
+  font-size: 17px;
+  letter-spacing: 0.02em;
+}
+
+.feat-body .feat-desc {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin: 0;
+  flex: 1;
+  line-height: 1.55;
+}
+
+.feat-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  background: var(--red);
+  border: 1px solid var(--red-dim);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, transform 0.15s ease, background 0.2s ease;
+  margin: 0 20px 16px;
+}
+
+.feat-btn:hover {
+  background: #ff1a1a;
+  box-shadow: 0 0 20px var(--red-glow);
+  transform: translateY(-1px);
+}
+
+.feat-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* =========================================================
+   NBA 2K14 Landing Page — Hero (shorter, bottom-cropped)
+   ========================================================= */
+.nba2k14-hero {
+  height: 380px;
+}
+
+.nba2k14-hero .tagline {
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  margin-bottom: 14px;
+}
+
+.nba2k14-hero h1 {
+  font-size: clamp(38px, 5.8vw, 64px);
+  max-width: 800px;
+  line-height: 1.05;
+  margin-bottom: 14px;
+}
+
+.nba2k14-hero .hero-sub {
+  font-size: clamp(14px, 1.6vw, 17px);
+  max-width: 620px;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .nba2k14-hero {
+    height: 300px;
+  }
+  .nba2k14-hero h1 {
+    font-size: 30px;
+  }
+  .nba2k14-hero .hero-sub {
+    font-size: 13px;
+  }
+}
+
+/* =========================================================
+   NBA 2K14 Landing Page — Stats Strip
+   ========================================================= */
+.n2k-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--panel-border-soft);
+  border-bottom: 1px solid var(--panel-border-soft);
+}
+
+.n2k-stat {
+  background: var(--bg);
+  padding: 36px 24px 32px;
+  text-align: center;
+  transition: background 0.25s ease;
+}
+
+.n2k-stat:hover {
+  background: var(--bg-raised);
+}
+
+.n2k-stat .num {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3vw, 40px);
+  font-weight: 700;
+  color: var(--text);
+  display: block;
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.n2k-stat .num .red {
+  color: var(--red);
+}
+
+.n2k-stat .label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  display: block;
+  line-height: 1.4;
+}
+
+@media (max-width: 700px) {
+  .n2k-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .n2k-stat {
+    padding: 28px 16px 24px;
+  }
+}
+
+@media (max-width: 420px) {
+  .n2k-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   NBA 2K14 Landing Page — Featured Categories
+   ========================================================= */
+.n2k-cats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.n2k-cat-card {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  padding: 32px 24px 28px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.n2k-cat-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 0;
+  background: var(--red);
+  transition: height 0.35s ease;
+  z-index: 2;
+}
+
+.n2k-cat-card:hover::before {
+  height: 100%;
+}
+
+.n2k-cat-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--red-dim);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.n2k-cat-card .cat-icon {
+  position: relative;
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  border: 1px solid var(--panel-border);
+  background: var(--bg-raised);
+  color: var(--red);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.n2k-cat-card:hover .cat-icon {
+  background: var(--red-bg);
+  border-color: var(--red-dim);
+}
+
+.n2k-cat-card h3 {
+  font-size: 20px;
+  margin-bottom: 6px;
+  letter-spacing: 0.03em;
+  position: relative;
+  z-index: 1;
+}
+
+.n2k-cat-card p {
+  font-size: 13.5px;
+  color: var(--text-dim);
+  margin: 0 0 auto;
+  line-height: 1.55;
+  position: relative;
+  z-index: 1;
+}
+
+.n2k-cat-card .cat-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  transition: color 0.2s ease;
+}
+
+.n2k-cat-card .cat-arrow::after {
+  content: "→";
+  transition: transform 0.25s ease;
+}
+
+.n2k-cat-card:hover .cat-arrow::after {
+  transform: translateX(6px);
+}
+
+.n2k-cat-card:hover .cat-arrow {
+  color: var(--red);
+}
+
+@media (max-width: 800px) {
+  .n2k-cats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .n2k-cats {
+    grid-template-columns: 1fr;
+  }
+  .n2k-cat-card {
+    padding: 24px 20px;
+  }
+  .n2k-cat-card h3 {
+    font-size: 18px;
+  }
+}
+
+/* =========================================================
+   Why QOL2K Section
+   ========================================================= */
+.why-n2k {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.why-n2k-text h2 {
+  font-size: clamp(28px, 3.6vw, 38px);
+  margin-bottom: 20px;
+}
+
+.why-n2k-text p {
+  color: var(--text-dim);
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.why-n2k-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.why-n2k-stat {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  padding: 22px 20px;
+  text-align: center;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.why-n2k-stat:hover {
+  border-color: var(--red-dim);
+  background: var(--panel-hover);
+}
+
+.why-n2k-stat .num {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--red);
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.why-n2k-stat .label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--text-mute);
 }
 
-/* typewriter caret */
-.type-line {
-  display: inline-block;
-  border-right: 3px solid var(--red);
-  padding-right: 4px;
+@media (max-width: 700px) {
+  .why-n2k {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .why-n2k-stats {
+    grid-template-columns: 1fr 1fr;
+  }
 }
-.type-line.done { border-right-color: transparent; }
+
+/* =========================================================
+   NBA 2K14 Landing — Tools Highlight
+   ========================================================= */
+.n2k-tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.n2k-tool-card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  padding: 28px 20px;
+  text-align: center;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.n2k-tool-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--red-dim);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+.n2k-tool-card .tool-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  border: 1px solid var(--panel-border);
+  background: var(--bg-raised);
+  color: var(--text-dim);
+  transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.n2k-tool-card:hover .tool-icon {
+  color: var(--red);
+  border-color: var(--red-dim);
+  background: var(--red-bg);
+}
+
+.n2k-tool-card h4 {
+  font-size: 14px;
+  margin: 0;
+  letter-spacing: 0.03em;
+}
+
+/* =========================================================
+   PBA 2K Landing Page — Hero
+   ========================================================= */
+.pba-hero {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--panel-border-soft);
+  display: flex;
+  align-items: center;
+}
+
+.pba-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(255, 45, 45, 0.08), transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(255, 45, 45, 0.04), transparent 40%),
+    linear-gradient(135deg, #0A0A0A 0%, #111111 50%, #0A0A0A 100%);
+  z-index: 0;
+}
+
+.pba-hero .hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.50) 0%,
+    rgba(10, 10, 10, 0.25) 50%,
+    rgba(10, 10, 10, 0.70) 100%
+  );
+}
+
+.pba-hero .hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 28px;
+  text-align: left;
+  display: block;
+}
+
+.pba-hero .hero-content .tagline {
+  text-align: left;
+}
+
+.pba-hero .hero-content h1 {
+  font-size: clamp(40px, 5.5vw, 68px);
+  max-width: 700px;
+  text-align: left;
+  margin-bottom: 14px;
+}
+
+.pba-hero .hero-content .hero-sub {
+  max-width: 560px;
+  text-align: left;
+  margin-bottom: 28px;
+}
+
+.pba-hero .hero-actions {
+  justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+  .pba-hero {
+    height: 380px;
+  }
+  .pba-hero .hero-content h1 {
+    font-size: 32px;
+  }
+  .pba-hero .hero-content .hero-sub {
+    font-size: 14px;
+  }
+}
+
+/* =========================================================
+   PBA 2K — Carousel
+   ========================================================= */
+.pba-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  aspect-ratio: 16/9;
+}
+
+.carousel-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(10, 10, 10, 0.7);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  opacity: 0;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.pba-carousel:hover .carousel-btn {
+  opacity: 1;
+}
+
+.carousel-btn:hover {
+  background: rgba(10, 10, 10, 0.9);
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.carousel-prev {
+  left: 12px;
+}
+
+.carousel-next {
+  right: 12px;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 7px;
+  z-index: 10;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  padding: 0;
+}
+
+.carousel-dot:hover {
+  background: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.2);
+}
+
+.carousel-dot.is-active {
+  background: var(--red);
+  border-color: var(--red);
+  transform: scale(1.2);
+}
+
+@media (max-width: 640px) {
+  .carousel-btn {
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+  }
+  .carousel-prev {
+    left: 8px;
+  }
+  .carousel-next {
+    right: 8px;
+  }
+  .carousel-dots {
+    bottom: 10px;
+  }
+  .carousel-dot {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+/* =========================================================
+   PBA 2K — Features Grid
+   ========================================================= */
+.pba-features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.pba-feature {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  padding: 28px 22px;
+  text-align: center;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pba-feature:hover {
+  transform: translateY(-4px);
+  border-color: var(--red-dim);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.pba-feature-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  border: 1px solid var(--red-dim);
+  background: var(--red-bg);
+  color: var(--red);
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.pba-feature:hover .pba-feature-icon {
+  background: var(--red-subtle);
+  border-color: var(--red);
+}
+
+.pba-feature h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  letter-spacing: 0.03em;
+}
+
+.pba-feature p {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin: 0;
+  line-height: 1.55;
+}
+
+@media (max-width: 800px) {
+  .pba-features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .pba-features {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   PBA 2K — Stats
+   ========================================================= */
+.pba-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--panel-border-soft);
+  border-bottom: 1px solid var(--panel-border-soft);
+}
+
+.pba-stat {
+  background: var(--bg);
+  padding: 36px 24px 32px;
+  text-align: center;
+  transition: background 0.25s ease;
+}
+
+.pba-stat:hover {
+  background: var(--bg-raised);
+}
+
+.pba-stat .num {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3vw, 38px);
+  font-weight: 700;
+  color: var(--text);
+  display: block;
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.pba-stat .num .accent {
+  color: var(--red);
+}
+
+.pba-stat .label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  display: block;
+  line-height: 1.4;
+}
+
+@media (max-width: 700px) {
+  .pba-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .pba-stat {
+    padding: 28px 16px 24px;
+  }
+}
+
+@media (max-width: 420px) {
+  .pba-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   PBA 2K — Download Section
+   ========================================================= */
+.pba-download {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pba-download h2 {
+  font-size: clamp(30px, 3.6vw, 40px);
+  margin-bottom: 16px;
+}
+
+.pba-download > p {
+  color: var(--text-dim);
+  font-size: 15px;
+  line-height: 1.65;
+  margin: 0 auto 24px;
+  max-width: 520px;
+}
+
+.pba-download-list {
+  list-style: none;
+  margin: 0 auto 28px;
+  padding: 0;
+  max-width: 420px;
+  text-align: left;
+  display: grid;
+  gap: 10px;
+}
+
+.pba-download-list li {
+  position: relative;
+  padding-left: 24px;
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.4;
+}
+
+.pba-download-list li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--red);
+  font-size: 12px;
+}
+
+.pba-download-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.pba-download-note {
+  font-size: 11.5px;
+  color: var(--text-mute);
+  font-family: var(--font-mono);
+}
+
+/* =========================================================
+   NBA 2K14 Landing — Footer CTA
+   ========================================================= */
+.footer-cta {
+  padding: 100px 0;
+  text-align: center;
+  background: var(--bg-raised);
+  border-top: 1px solid var(--panel-border-soft);
+  border-bottom: 1px solid var(--panel-border-soft);
+}
+
+.footer-cta h2 {
+  font-size: clamp(36px, 5vw, 56px);
+  margin-bottom: 16px;
+  letter-spacing: 0.04em;
+}
+
+.footer-cta p {
+  color: var(--text-dim);
+  font-size: 16px;
+  max-width: 520px;
+  margin: 0 auto 32px;
+  line-height: 1.6;
+}
+
+.footer-cta .cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+}
+
+/* =========================================================
+   Community Section (homepage)
+   ========================================================= */
+.community-section {
+  padding: 80px 0;
+  text-align: center;
+  border-top: 1px solid var(--panel-border-soft);
+  border-bottom: 1px solid var(--panel-border-soft);
+  background: var(--bg-raised);
+}
+
+.community-section h2 {
+  font-size: clamp(32px, 4vw, 44px);
+  margin-bottom: 12px;
+}
+
+.community-section p {
+  color: var(--text-dim);
+  font-size: 16px;
+  max-width: 500px;
+  margin: 0 auto 28px;
+  line-height: 1.6;
+}
+
+.community-section .btn-community {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 16px 32px;
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  color: var(--text);
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.community-section .btn-community:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: var(--red-bg);
+  transform: translateY(-2px);
+}
+
+.community-section .btn-community svg {
+  width: 20px;
+  height: 20px;
+}
 
 /* =========================================================
    Section headers
@@ -534,7 +1801,7 @@ section { position: relative; }
   background: var(--panel-hover);
   box-shadow: 0 12px 32px rgba(0,0,0,0.4);
 }
-.cat-card:hover::before { color: rgba(255, 59, 63, 0.25); }
+.cat-card:hover::before { color: rgba(255, 45, 45, 0.25); }
 
 .cat-card .cat-tag {
   display: inline-block;
@@ -612,9 +1879,7 @@ section { position: relative; }
 
 .mod-thumb {
   aspect-ratio: 16/9;
-  background:
-    linear-gradient(135deg, rgba(80, 140, 255, 0.08), rgba(200, 160, 50, 0.05)),
-    repeating-linear-gradient(45deg, #181c22, #181c22 10px, #161a1f 10px, #161a1f 20px);
+  background: var(--panel);
   position: relative;
   display: flex;
   align-items: center;
@@ -727,7 +1992,7 @@ section { position: relative; }
 }
 .stat-line b { color: var(--text-dim); font-weight: 600; }
 .stat-line a { color: var(--red); text-decoration: underline; }
-.stat-line a:hover { color: #ff5256; }
+.stat-line a:hover { color: #ff1a1a; }
 
 .mod-actions {
   display: flex;
@@ -747,16 +2012,15 @@ section { position: relative; }
   letter-spacing: 0.03em;
   padding: 11px 12px;
   border-radius: var(--radius-sm);
-  color: #fff;
-  background: linear-gradient(180deg, #ff5256, #c4262b);
-  border: 1px solid #d42c31;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 0 0 rgba(255,59,63,0);
+  color: #fff;  background: linear-gradient(180deg, #ff1a1a, #CC2424);
+  border: 1px solid #CC2424;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 0 0 rgba(255,45,45,0);
   cursor: pointer;
   transition: box-shadow 0.2s ease, transform 0.15s ease, background 0.2s ease;
 }
 .btn-download svg { width: 14px; height: 14px; flex-shrink: 0; }
 .btn-download:hover {
-  background: linear-gradient(180deg, #ff6367, #db2f34);
+  background: linear-gradient(180deg, #ff3333, #d62828);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), 0 0 20px var(--red-glow);
   transform: translateY(-1px);
 }
@@ -806,7 +2070,7 @@ section { position: relative; }
   margin-bottom: 16px;
 }
 .crumb a { color: var(--red); }
-.crumb a:hover { color: #ff5256; }
+.crumb a:hover { color: #ff1a1a; }
 
 /* =========================================================
    Search + filters
@@ -1052,9 +2316,7 @@ section { position: relative; }
 
 .modal-thumb {
   aspect-ratio: 21/9;
-  background:
-    linear-gradient(135deg, rgba(80, 140, 255, 0.10), rgba(200, 160, 50, 0.06)),
-    repeating-linear-gradient(45deg, #181c22, #181c22 10px, #161a1f 10px, #161a1f 20px);
+  background: var(--panel);
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   display: flex;
   align-items: center;
@@ -1087,14 +2349,14 @@ section { position: relative; }
   height: 34px;
   border-radius: 50%;
   border: 1px solid var(--panel-border);
-  background: rgba(12, 13, 15, 0.8);
+  background: rgba(10, 10, 10, 0.8);
   color: var(--text);
   font-size: 16px;
   cursor: pointer;
   z-index: 2;
   transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease;
 }
-.modal-close:hover { border-color: var(--red); color: var(--red); background: rgba(255, 59, 63, 0.1); }
+.modal-close:hover { border-color: var(--red); color: var(--red); background: var(--red-bg); }
 
 .modal-content { padding: 26px 28px 30px; }
 .modal-content h2 { font-size: 24px; margin-bottom: 6px; letter-spacing: 0.03em; }
@@ -1176,7 +2438,7 @@ body.modal-lock { overflow: hidden; }
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: #FF5E5B;
+  background: var(--red);
   color: #fff;
   font-family: var(--font-body);
   font-weight: 700;
@@ -1184,7 +2446,7 @@ body.modal-lock { overflow: hidden; }
   padding: 14px 24px;
   border-radius: 999px;
   border: none;
-  box-shadow: 0 8px 28px rgba(255, 94, 91, 0.35);
+  box-shadow: 0 8px 28px var(--red-glow);
   text-decoration: none;
   cursor: pointer;
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, background 0.2s ease;
@@ -1193,8 +2455,8 @@ body.modal-lock { overflow: hidden; }
 
 .donation-cta:hover {
   transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 14px 40px rgba(255, 94, 91, 0.5);
-  background: #ff6f6d;
+  box-shadow: 0 14px 40px var(--red-glow);
+  background: #ff1a1a;
   color: #fff;
 }
 

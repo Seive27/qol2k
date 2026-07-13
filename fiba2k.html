@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIBA 2K — Coming Soon | QOL2K</title>
+<meta name="description" content="FIBA 2K mods coming soon to QOL2K. Follow the Facebook page for updates.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* Minimal coming-soon nav — brand only, no links */
+.cs-nav {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  background: rgba(10, 10, 10, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+.cs-nav.is-scrolled {
+  background: rgba(8, 8, 8, 0.94);
+  border-bottom-color: var(--panel-border-soft);
+}
+.cs-nav .container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+.cs-nav .brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-family: var(--font-display);
+  text-decoration: none;
+  color: var(--text);
+}
+.cs-nav .brand-mark {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.cs-nav .brand-mark span { color: var(--red); }
+.cs-nav .brand-sub {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.15em;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  display: none;
+}
+@media (min-width: 560px) {
+  .cs-nav .brand-sub { display: inline; }
+}
+
+/* Hero */
+.cs-hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - var(--nav-height));
+  padding: 60px 28px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cs-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: var(--bg);
+  z-index: 0;
+}
+.cs-hero-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+}
+.cs-hero .tagline {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 18px;
+}
+.cs-hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 6vw, 72px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin-bottom: 16px;
+  line-height: 1.05;
+}
+.cs-hero h1 span { color: var(--red); }
+.cs-hero p {
+  color: var(--text-dim);
+  font-size: 16px;
+  line-height: 1.65;
+  margin: 0 auto 32px;
+  max-width: 480px;
+}
+.cs-hero .cs-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+}
+.cs-hero .btn-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.18s ease;
+}
+.cs-hero .btn-home:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: var(--red-bg);
+  transform: translateY(-2px);
+}
+.cs-hero .btn-home svg {
+  width: 16px;
+  height: 16px;
+}
+.cs-hero .btn-fb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 24px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--panel-border);
+  background: transparent;
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.18s ease;
+}
+.cs-hero .btn-fb:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: var(--red-bg);
+  transform: translateY(-2px);
+}
+
+/* Divider line */
+.cs-divider {
+  width: 60px;
+  height: 2px;
+  background: var(--panel-border);
+  margin: 0 auto 28px;
+  border-radius: 1px;
+}
+</style>
+</head>
+<body>
+
+<nav class="cs-nav" id="csNav">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <span class="brand-mark">QOL<span>2K</span></span>
+      <span class="brand-sub">Quality of Life Mods</span>
+    </a>
+  </div>
+</nav>
+
+<main>
+  <section class="cs-hero">
+    <div class="cs-hero-bg"></div>
+    <div class="cs-hero-inner reveal is-visible">
+      <p class="tagline">FIBA 2K Mod Archive</p>
+      <h1>Coming <span>Soon</span></h1>
+      <div class="cs-divider"></div>
+      <p>We're building the FIBA 2K mod archive for QOL2K. International basketball modifications, tournament content, and global rosters are on the way. Follow the Facebook page to stay updated.</p>
+      <div class="cs-actions">
+        <a href="index.html" class="btn-home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v9a1 1 0 001 1h3v-5h6v5h3a1 1 0 001-1v-9"/></svg>
+          Back to Home
+        </a>
+        <a href="https://www.facebook.com/share/1CEVisA8rs/" class="btn-fb" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14C17.17 2.1 15.9 2 14.6 2 11.9 2 10 3.66 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+          Follow on Facebook
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  /* Sticky shadow */
+  var nav = document.getElementById("csNav");
+  window.addEventListener("scroll", function() {
+    if (window.scrollY > 8) nav.classList.add("is-scrolled");
+    else nav.classList.remove("is-scrolled");
+  }, { passive: true });
+</script>
+</body>
+</html>

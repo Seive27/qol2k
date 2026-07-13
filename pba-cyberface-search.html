@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PBA 2K Cyberface Search — QOL2K</title>
+<meta name="description" content="Search any PBA 2K player's cyberface ID. Find face IDs for PBA and Asian league players instantly.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script>const CYBERFACES_DATA = [{"name":"Ryoma Hashimoto","id":"30000"},{"name":"Kaito Shike","id":"30001"},{"name":"Jeff Gibbs","id":"30002"},{"name":"L.J. Peak","id":"30003"},{"name":"Shun Matsuyama","id":"30004"},{"name":"Tim Soares","id":"30005"},{"name":"Kai Sotto","id":"30006"},{"name":"Kenshin Hoshikawa","id":"30007"},{"name":"Shuhei Kitagwa","id":"30008"},{"name":"Reiju Sasakura","id":"30009"},{"name":"Takuma Enokida","id":"30010"},{"name":"Hirotoki Iida","id":"30190"},{"name":"Soichiro Inoue","id":"30011"},{"name":"Gohei Sekino","id":"30012"},{"name":"Dwight Ramos","id":"30013"},{"name":"Shuuto Terazono","id":"30014"},{"name":"Ryan Cleaner","id":"30015"},{"name":"Hiroto Kikuchi","id":"30016"},{"name":"Tsukasa Nakano","id":"30017"},{"name":"Kyosuke Hoshino","id":"30018"},{"name":"Rei Shimatani","id":"30019"},{"name":"Yosuke Naito","id":"30020"},{"name":"Kaito Moritomi","id":"30021"},{"name":"Thomas Welsh","id":"30022"},{"name":"Yuuta Matsushita","id":"30023"},{"name":"Terry Allen","id":"30024"},{"name":"Yusuke Suzuki","id":"30025"},{"name":"Kenji Leon Matsumoto","id":"30026"},{"name":"Masaya Karimata","id":"30027"},{"name":"Jarrell Brantley","id":"30028"},{"name":"Yu Kibayashi","id":"30029"},{"name":"Masaaki Morikawa","id":"30030"},{"name":"Hirohide Araya","id":"30031"},{"name":"Mark Smith","id":"30032"},{"name":"Hiroharu Takahira","id":"30033"},{"name":"AJ Edu","id":"30034"},{"name":"Hayato Yamaguchi","id":"30035"},{"name":"Jehyve Floyd","id":"30036"},{"name":"Koya Kawamata","id":"30037"},{"name":"Yudai Baba","id":"30038"},{"name":"Ray Parks Jr.","id":"30039"},{"name":"Takumi Takagi","id":"30040"},{"name":"Matt Bonds","id":"30041"},{"name":"Matt Luther","id":"30042"},{"name":"Daiki Tsuchiya","id":"30043"},{"name":"Takuya Hashimoto","id":"30044"},{"name":"Joji Takeuchi","id":"30045"},{"name":"Rei Goda","id":"30046"},{"name":"Fumiya Lio","id":"30047"},{"name":"Makoto Kinoshita","id":"30048"},{"name":"Tatsuya Suzuki","id":"30049"},{"name":"Volodymyr Gerun","id":"30050"},{"name":"Hayato Maki","id":"30051"},{"name":"Danieldan Nnanna","id":"30053"},{"name":"Gary Clark","id":"30054"},{"name":"Yusei Sugiura","id":"30055"},{"name":"Takeru Oba","id":"30056"},{"name":"Damien Inglis","id":"30057"},{"name":"Kenta Morii","id":"30058"},{"name":"Maik Kotsar","id":"30059"},{"name":"King Kai","id":"30060"},{"name":"Hiroki Matsuzaki","id":"30061"},{"name":"Koya Sudo","id":"30062"},{"name":"Yuki Kawamura","id":"30207"},{"name":"Kwan-Hee Lee","id":"30063"},{"name":"Seung-Woo Lee","id":"30064"},{"name":"Jae-Do Lee","id":"30065"},{"name":"In-Tae Park","id":"30066"},{"name":"Sang-Hyeok Han","id":"30067"},{"name":"Jun-Seok Yang","id":"30068"},{"name":"Hee-Jae Jeong","id":"30069"},{"name":"Won-Sang Yun","id":"30070"},{"name":"Jun-Hyung Park","id":"30071"},{"name":"Han-Young Kim","id":"30072"},{"name":"Carl Tamayo","id":"30073"},{"name":"Kwang-Jin Lee","id":"30074"},{"name":"Jong-Ho Kim","id":"30075"},{"name":"Indeok Jeong","id":"30076"},{"name":"Seung-Hoon Lee","id":"30077"},{"name":"Jun-Il Kim","id":"30078"},{"name":"Dante Cunningham","id":"30079"},{"name":"Min-Su Seo","id":"30080"},{"name":"Assem Marei","id":"30081"},{"name":"Rhenz Abando","id":"30082"},{"name":"Junhyeong Byeon","id":"30083"},{"name":"Byung-Jun Bae","id":"30084"},{"name":"Chan-Hyuk Go","id":"30085"},{"name":"Jun-Hoo Ham","id":"30086"},{"name":"Seunghui Han","id":"30087"},{"name":"Yoo Jin","id":"30088"},{"name":"Eun-Hoo Jo","id":"30089"},{"name":"Hyunwoo Joo","id":"30090"},{"name":"Cheol-Uk Kim","id":"30091"},{"name":"Kyungwon Kim","id":"30092"},{"name":"Woojung Lee","id":"30093"},{"name":"Darryl Monroe","id":"30094"},{"name":"Seonggon Moon","id":"30095"},{"name":"Sek-Eun Oh","id":"30096"},{"name":"Jihoon Park","id":"30097"},{"name":"Omari Spellman","id":"30098"},{"name":"Jun Won Jeong","id":"30099"},{"name":"Hee-Jong Yang","id":"30100"},{"name":"Kaisei Takahashi","id":"30101"},{"name":"Kyle Collinsworth","id":"30102"},{"name":"Thirdy Ravena","id":"30103"},{"name":"Isaiah Hicks","id":"30104"},{"name":"Atsuya Ota","id":"30105"},{"name":"Alistair Tokio Tsuchiya","id":"30106"},{"name":"Kosuke Hosokawa","id":"30107"},{"name":"Ryusei Sasaki","id":"30108"},{"name":"Daniel Giddens","id":"30109"},{"name":"Ryota Hanzawa","id":"30110"},{"name":"Shinnosuke Negoro","id":"30111"},{"name":"Yaten Maten","id":"30112"},{"name":"Kyle O'Quinn","id":"30113"},{"name":"Kosuke Kanamaru","id":"30114"},{"name":"RhonJay Abarrientos","id":"30115"},{"name":"Jin-Soo Choi","id":"30116"},{"name":"Ji-Hoon Ham","id":"30117"},{"name":"Young Hoon Kim","id":"30118"},{"name":"Jaeseok Jang","id":"30119"},{"name":"Jonghyun Jeong","id":"30120"},{"name":"Dong Jun Kim","id":"30121"},{"name":"Gookchan Kim","id":"30122"},{"name":"Hyung-Min Kim","id":"30123"},{"name":"Jihoo Kim","id":"30124"},{"name":"Justin Knox","id":"30125"},{"name":"Jinseok Lee","id":"30126"},{"name":"Woosuk Lee","id":"30127"},{"name":"Gaige Prim","id":"30128"},{"name":"Myeongjin Seo","id":"30129"},{"name":"Minsuk Shin","id":"30130"},{"name":"Seong-Jin Shin","id":"30131"},{"name":"Henry Sims","id":"30132"},{"name":"Seong-Jun Yoon","id":"30133"},{"name":"Nate Mason","id":"30134"},{"name":"Aleksa Uskokovic","id":"30135"},{"name":"Klemen Prepelic","id":"30136"},{"name":"Danilo Andusic","id":"30137"},{"name":"Awudu Abass","id":"30138"},{"name":"Nemanja Dangubic","id":"30139"},{"name":"JaCorey Williams","id":"30140"},{"name":"Leon Radosevic","id":"30141"},{"name":"Amet Duverioglu","id":"30142"},{"name":"Bora Yasar","id":"30143"},{"name":"Davis Bertans","id":"30144"},{"name":"Isaiah Shaquille Taylor","id":"30145"},{"name":"Robert Franks","id":"30146"},{"name":"Antonius Cleveland","id":"30147"},{"name":"Fraser Roxburgh","id":"30148"},{"name":"Anthony Drmic","id":"30149"},{"name":"Deng Acuoth","id":"30150"},{"name":"Nick Marshall","id":"30151"},{"name":"Mitch McCarron","id":"30152"},{"name":"Cameron Thew","id":"30153"},{"name":"Kyrin Galloway","id":"30154"},{"name":"Ian Clark","id":"30155"},{"name":"Daniel Johnson","id":"30156"},{"name":"Hyrum Harris","id":"30157"},{"name":"Fiston Ipassou","id":"30158"},{"name":"Sunday Dech","id":"30159"},{"name":"Alex Toohey","id":"30159"},{"name":"Bul Kuol","id":"30160"},{"name":"Cameron Oliver","id":"30161"},{"name":"Henry Lau","id":"30162"},{"name":"Izayah Le'Afa","id":"30163"},{"name":"Jason Spurgin","id":"30164"},{"name":"Jaylen Adams","id":"30165"},{"name":"Jaylin Galloway","id":"30166"},{"name":"Keli Leaupepe","id":"30167"},{"name":"Klairus Amir","id":"30168"},{"name":"Kouat Noi","id":"30169"},{"name":"Makuach Maluach","id":"30170"},{"name":"Shaun Bruce","id":"30171"},{"name":"Tyler Robertson","id":"30172"},{"name":"Xavier Cooks","id":"30173"},{"name":"Sean Stock","id":"30174"},{"name":"Riley Real","id":"30175"},{"name":"Noah Collinson","id":"30176"},{"name":"Mirko Djeric","id":"30177"},{"name":"Matthew Trandafil","id":"30178"},{"name":"Malang Deng","id":"30179"},{"name":"Jude Mann","id":"30180"},{"name":"Jordan West","id":"30181"},{"name":"Jordan Heading","id":"30182"},{"name":"Joel Spear","id":"30183"},{"name":"Harry Bruce","id":"30184"},{"name":"Hamish Staude","id":"30185"},{"name":"Ghyslain Irenge","id":"30186"},{"name":"Franciz Wai Mayol","id":"30187"},{"name":"Fabijan Krslovic","id":"30188"},{"name":"Carter Truslove","id":"30189"},{"name":"Akoldah Gak","id":"30191"},{"name":"Koya Kobari","id":"30192"},{"name":"Sacha Killeya-Jones","id":"30193"},{"name":"Ryusei Shinoyama","id":"30194"},{"name":"Reiya Nozaki","id":"30195"},{"name":"Teppei Kashiwagura","id":"30196"},{"name":"Ryo Ida","id":"30197"},{"name":"Yuya Kamata","id":"30198"},{"name":"Alize Johnson","id":"30199"},{"name":"Rosco Allen","id":"30200"},{"name":"Takumi Hasegawa","id":"30201"},{"name":"Matthew Wright","id":"30202"},{"name":"Takumi Masuko","id":"30203"},{"name":"Brock Motum","id":"30204"},{"name":"Justin Burrell","id":"30205"},{"name":"Ryan Kriener","id":"30206"},{"name":"Kiefer Ravena","id":"30052"},{"name":"Hayato Wakugawa","id":"30208"},{"name":"Daichi Nomoto","id":"30211"},{"name":"Takanori Tahara","id":"30212"},{"name":"Kazuki Miyamoto","id":"30213"},{"name":"Naoto Moriyama","id":"30214"},{"name":"Shintaro Ehara","id":"30215"},{"name":"Rin Yamazaki","id":"30216"},{"name":"Josei Maniwa","id":"30217"},{"name":"John Amores","id":"30218"},{"name":"Allyn Bulanadi","id":"30219"},{"name":"JM Calma","id":"30220"},{"name":"John Cuntapay","id":"30221"},{"name":"Cade Flores","id":"30222"},{"name":"Jio Jalalon","id":"30223"},{"name":"Joshua Munzon","id":"30224"},{"name":"William Navarro","id":"30225"},{"name":"Evan Nelle","id":"30226"},{"name":"Sidney Onwubere","id":"30227"},{"name":"Paolo Taha","id":"30228"},{"name":"Arvin Tolentino","id":"30229"},{"name":"Abu Tratter","id":"30230"},{"name":"Fran Yu","id":"30231"},{"name":"Paul Zamar","id":"30232"},{"name":"Rodney Brondial","id":"30233"},{"name":"Jericho Cruz","id":"30234"},{"name":"Simon Enciso","id":"30235"},{"name":"June Mar Fajardo","id":"30236"},{"name":"Kyt Jimenez","id":"30237"},{"name":"Marcio Lassiter","id":"30238"},{"name":"Vic Manuel","id":"30239"},{"name":"Avan Nava","id":"30240"},{"name":"CJ Perez","id":"30241"},{"name":"Terrence Romeo","id":"30242"},{"name":"Kris Rosales","id":"30243"},{"name":"Chris Ross","id":"30244"},{"name":"Moala Tautuaa","id":"30245"},{"name":"Jeron Teng","id":"30246"},{"name":"Don Trollano","id":"30247"},{"name":"Raymond Almazan","id":"30248"},{"name":"Chris Banchero","id":"30249"},{"name":"Brandon Bates","id":"30250"},{"name":"Aaron Black","id":"30251"},{"name":"CJ Cansino","id":"30252"},{"name":"Anjo Caram","id":"30253"},{"name":"Cliff Hodge","id":"30254"},{"name":"Raymar Jose","id":"30255"},{"name":"Allein Maliksi","id":"30256"},{"name":"Jolo Mendoza","id":"30257"},{"name":"Chris Newsome","id":"30258"},{"name":"Jake Pascual","id":"30259"},{"name":"Alvin Pasaol","id":"30260"},{"name":"Bong Quinto","id":"30261"},{"name":"Jansen Rios","id":"30262"},{"name":"Norbert Torres","id":"30263"},{"name":"Sedrick Barefield","id":"30264"},{"name":"JVee Casio","id":"30265"},{"name":"Miguel Corteza","id":"30266"},{"name":"Christian David","id":"30267"},{"name":"Bradwyn Guinto","id":"30268"},{"name":"Tyrus Hill","id":"30269"},{"name":"RK Ilagan","id":"30270"},{"name":"Clifford Jopia","id":"30271"},{"name":"James Kwekuteye","id":"30272"},{"name":"DJ Mitchell","id":"30273"},{"name":"Kib Montalbo","id":"30274"},{"name":"Jewel Ponferada","id":"30275"},{"name":"Troy Rosario","id":"30276"},{"name":"Rey Suerte","id":"30277"},{"name":"Jaydee Tungcab","id":"30278"},{"name":"Andreas Cahilig","id":"30279"},{"name":"Kenmark Cariño","id":"30280"},{"name":"Kevin Ferrer","id":"30281"},{"name":"John Grospe","id":"30282"},{"name":"Didat Hanapi","id":"30283"},{"name":"Paolo Hernandez","id":"30284"},{"name":"Mark Nonoy","id":"30285"},{"name":"Tommy Olivario","id":"30286"},{"name":"Brent Paraiso","id":"30287"},{"name":"Stanley Pringle","id":"30288"},{"name":"Aldrech Ramos","id":"30289"},{"name":"Louie Sangalang","id":"30290"},{"name":"Christian Standhardinger","id":"30291"},{"name":"Juami Tiongson","id":"30292"},{"name":"Anton Asistio","id":"30293"},{"name":"Beau Belga","id":"30294"},{"name":"Mark Borboran","id":"30295"},{"name":"Andrei Caracut","id":"30296"},{"name":"Jhonard Clarito","id":"30297"},{"name":"Keith Datu","id":"30298"},{"name":"Nick Demusis","id":"30299"},{"name":"Francis Escandor","id":"30300"},{"name":"Shaun Ildefonso","id":"30301"},{"name":"Gian Mamuyac","id":"30302"},{"name":"Adrian Nocum","id":"30303"},{"name":"Gabe Norwood","id":"30304"},{"name":"Felix Pangilinan-Lemetti","id":"30305"},{"name":"Leonard Santillan","id":"30306"},{"name":"Caelan Tiongson","id":"30307"},{"name":"Luis Villegas","id":"30308"},{"name":"Jay-jay Alejandro","id":"30309"},{"name":"Kai Ballungay","id":"30310"},{"name":"Simon Camacho","id":"30311"},{"name":"Matthew Daves","id":"30312"},{"name":"R.R. Garcia","id":"30313"},{"name":"R.J. Jazul","id":"30314"},{"name":"Sean Manganti","id":"30315"},{"name":"Larry Muyang","id":"30316"},{"name":"Jason Perkins","id":"30317"},{"name":"Ricci Rivero","id":"30318"},{"name":"Kent Salado","id":"30319"},{"name":"Raul Soyud","id":"30320"},{"name":"Tyler Tio","id":"30321"},{"name":"Ken Tuffin","id":"30322"},{"name":"Ato Ular","id":"30323"},{"name":"Raffy Verano","id":"30324"},{"name":"Calvin Abueva","id":"30325"},{"name":"Jerrick Ahanmisi","id":"30326"},{"name":"Peter Alfaro III","id":"30327"},{"name":"Jerrick Balanza","id":"30328"},{"name":"Mark Barroca","id":"30329"},{"name":"Rome Dela Rosa","id":"30330"},{"name":"Aris Dionisio","id":"30331"},{"name":"Joseph Eriobu","id":"30332"},{"name":"Russel Escoto","id":"30333"},{"name":"James Laput","id":"30334"},{"name":"Jerom Lastimosa","id":"30335"},{"name":"Paul Lee","id":"30336"},{"name":"Zavier Lucero","id":"30337"},{"name":"Jed Mendoza","id":"30338"},{"name":"Rafi Reavis","id":"30339"},{"name":"Ian Sangalang","id":"30340"},{"name":"Kevin Alas","id":"30341"},{"name":"Baser Amer","id":"30342"},{"name":"Robert Bolick","id":"30343"},{"name":"Dominick Fajardo","id":"30344"},{"name":"Robbie Herndon","id":"30345"},{"name":"Dave Marcelo","id":"30346"},{"name":"Michael Miranda","id":"30347"},{"name":"Javee Mocon","id":"30348"},{"name":"Jhan Nermal","id":"30349"},{"name":"Matt Nieto","id":"30350"},{"name":"Jake Pascual","id":"30351"},{"name":"Jonnel Policarpio","id":"30352"},{"name":"Richie Rodger","id":"30353"},{"name":"Anthony Semerad","id":"30354"},{"name":"Enoch Valdez","id":"30355"},{"name":"RJ Abarrientos","id":"30115"},{"name":"Ben Adamos","id":"30357"},{"name":"Japeth Aguilar","id":"30358"},{"name":"Raymond Aguilar","id":"30359"},{"name":"Maverick Ahanmisi","id":"30360"},{"name":"Ralph Cu","id":"30361"},{"name":"Jason David","id":"30362"},{"name":"Paul Garcia","id":"30363"},{"name":"Isaac Go","id":"30364"},{"name":"Jeremiah Gray","id":"30365"},{"name":"Stephen Holt","id":"30366"},{"name":"Jamie Malonzo","id":"30367"},{"name":"Aljon Mariano","id":"30368"},{"name":"Von Pessumal","id":"30369"},{"name":"John Pinto","id":"30370"},{"name":"L.A. Tenorio","id":"30371"},{"name":"Scottie Thompson","id":"30372"},{"name":"Joe Devance","id":"30373"},{"name":"Kim Aurin","id":"30374"},{"name":"Jayson Castro","id":"30375"},{"name":"Barkley Eboña","id":"30376"},{"name":"John Paul Erram","id":"30377"},{"name":"Chris Exciminiano","id":"30378"},{"name":"Henry Galinato","id":"30379"},{"name":"Brandon Ganuelas-Rosser","id":"30380"},{"name":"Brian Heruela","id":"30381"},{"name":"Glenn Khobuntin","id":"30382"},{"name":"Rey Nambatac","id":"30383"},{"name":"Calvin Oftana","id":"30384"},{"name":"CJ Payawal","id":"30385"},{"name":"Roger Pogoy","id":"30386"},{"name":"Ryan Reyes","id":"30387"},{"name":"Paul Varilla","id":"30388"},{"name":"Almond Vosotros","id":"30389"},{"name":"Kelly Williams","id":"30390"},{"name":"Jordan Heading","id":"30391"},{"name":"BJ Andrade","id":"30392"},{"name":"Justin Arana","id":"30393"},{"name":"Alex Cabagnot","id":"30394"},{"name":"King Caralipio","id":"30395"},{"name":"JL Delos Santos","id":"30396"},{"name":"Inand Fornillos","id":"30397"},{"name":"Patrick Maagdenberg","id":"30398"},{"name":"Aljun Melecio","id":"30399"},{"name":"Mike Nieto","id":"30400"},{"name":"Kevin Racal","id":"30401"},{"name":"Bryan Santos","id":"30402"},{"name":"Alec Stockton","id":"30403"},{"name":"Kamron Vigan-Fleming","id":"30404"},{"name":"Schonny Winston","id":"30405"},{"name":"Wong Ho Yin","id":"30443"},{"name":"Chu Tsz Yung","id":"30444"},{"name":"Chan Siu Wing","id":"30445"},{"name":"Cheung Ying Lung","id":"30446"},{"name":"Glen Yang","id":"30447"},{"name":"Pok Yuet Yeung","id":"30448"},{"name":"Chris McLaughlin","id":"30449"},{"name":"Cameron Clark","id":"30450"},{"name":"Kobey Lam","id":"30451"},{"name":"Leung Ka Hin","id":"30452"},{"name":"Chan Kaho","id":"30453"},{"name":"Sheikh Muhammad Sulaiman","id":"30454"},{"name":"Yip Yiu Pong","id":"30455"},{"name":"Steven Guinchard","id":"30456"},{"name":"Justin Brownlee","id":"30413"},{"name":"KJ McDaniels","id":"30458"},{"name":"Anthony Beane","id":"30459"},{"name":"Brandon Jawato","id":"30460"},{"name":"Muhammad Arighi","id":"30461"},{"name":"James Dickey III","id":"30462"},{"name":"Derrick Michael Xzavierro","id":"30463"},{"name":"Yesaya Saudale","id":"30464"},{"name":"Agassi Goantara","id":"30465"},{"name":"Hendrick Yonga","id":"30466"},{"name":"Andakara Dhyaksa-Prastawa","id":"30467"},{"name":"Muhammad Guntara","id":"30468"},{"name":"Kosasih Vincent","id":"30469"},{"name":"Aldy Rachman","id":"30470"},{"name":"Nickson Gosal","id":"30471"},{"name":"Anto Boraytan","id":"30472"},{"name":"Greans Tangkulung","id":"30473"},{"name":"Abiyyu Ramadhan","id":"30474"},{"name":"Kavell Bigby-Williams","id":"30406"},{"name":"Quincy Miller","id":"30407"},{"name":"Akil Mitchell","id":"30408"},{"name":"George King","id":"30409"},{"name":"Ryan Richards","id":"30410"},{"name":"Kenneth Kadji","id":"30411"},{"name":"Donovan Smith","id":"30412"},{"name":"Ricardo Ratliffe","id":"30414"},{"name":"Ed Davis","id":"30415"},{"name":"Rondae Hollis-Jefferson","id":"30416"},{"name":"Cheick Diallo","id":"30417"},{"name":"Renaldo Balkman","id":"30418"},{"name":"Ivan Johnson","id":"30419"},{"name":"Vernon Macklin","id":"30420"},{"name":"Al Thornton","id":"30421"},{"name":"Jordan Williams","id":"30422"},{"name":"Shabazz Muhammad","id":"30423"},{"name":"Rahlir Hollis-Jefferson","id":"30424"},{"name":"DeAndre Williams-Baldwin","id":"30425"},{"name":"Tyler Bey","id":"30426"},{"name":"Johnathan Williams","id":"30427"},{"name":"Thomas De Thaey","id":"30428"},{"name":"Henry Walker","id":"30429"},{"name":"Murphy Holloway","id":"30430"},{"name":"Bennie Boatwright","id":"30431"},{"name":"Shonn Miller","id":"30432"},{"name":"Demetrius Treadwell","id":"30433"},{"name":"Jamil Wilson","id":"30434"},{"name":"Andrew Nicholson","id":"30435"},{"name":"Le'Bryan Nash","id":"30436"},{"name":"Myke Henry","id":"30437"},{"name":"Glenn Robinson III","id":"30438"},{"name":"Jayveous McKinnis","id":"30439"},{"name":"Scotty Hopson","id":"30440"},{"name":"Ricky Ledo","id":"30441"},{"name":"Jordan Adams","id":"30442"},{"name":"Yogev Ohayon","id":"2587"},{"name":"Ricky Hickman","id":"2548"},{"name":"Devin Smith","id":"2601"},{"name":"Lior Eliyahu","id":"2574"},{"name":"Shawn James","id":"2542"},{"name":"David Logan","id":"2619"},{"name":"Darko Planinic","id":"2625"},{"name":"Nik Caner-Medley","id":"2618"},{"name":"Sylven Landesberg","id":"2553"},{"name":"Guy Pnini","id":"2666"},{"name":"Bobby Brown","id":"2533"},{"name":"Matthew Janning","id":"2630"},{"name":"David Moss","id":"2569"},{"name":"Kristjan Kangur","id":"2628"},{"name":"Benjamin Eze","id":"2645"},{"name":"Daniel Hackett","id":"2613"},{"name":"Tomas Ress","id":"2622"},{"name":"Viktor Sanikidze","id":"2598"},{"name":"Marco Carraretto","id":"2655"},{"name":"Aleksander Rasic","id":"2652"},{"name":"Evangelos Mantzaris","id":"2620"},{"name":"Vassilis Spanoulis","id":"2527"},{"name":"Kostas Papanikolaou","id":"2554"},{"name":"Georgios Printezis","id":"2547"},{"name":"Kyle Hines","id":"2541"},{"name":"Acie Law","id":"2592"},{"name":"Pero Antic","id":"2644"},{"name":"Stratos Perperoglou","id":"2639"},{"name":"Josh Powell","id":"2635"},{"name":"Kostas Sloukas","id":"2632"},{"name":"Dimitris Diamantidis","id":"2530"},{"name":"Roko Ukic","id":"2595"},{"name":"Jonas Maciulis","id":"2573"},{"name":"James Gist","id":"2610"},{"name":"Stephane Lasme","id":"2565"},{"name":"Michael Bramos","id":"2602"},{"name":"Kostas Tsartsaris","id":"2638"},{"name":"Marcus Banks","id":"2600"},{"name":"Jason Kapono","id":"2643"},{"name":"Sofoklis Schortsanitis","id":"2564"},{"name":"Sergio Llull","id":"2540"},{"name":"Carlos Suarez","id":"2609"},{"name":"Rudy Fernandez","id":"2535"},{"name":"Nikola Mirotic","id":"2534"},{"name":"Mirza Begic","id":"2614"},{"name":"Marcus Slaughter","id":"2568"},{"name":"Jaycee Carroll","id":"2544"},{"name":"Felipe Reyes","id":"2590"},{"name":"Sergio Rodriguez","id":"2562"},{"name":"Martynas Pocius","id":"2593"},{"name":"Earl Calloway","id":"2580"},{"name":"Zoran Dragic","id":"2603"},{"name":"Krunoslav Simon","id":"2585"},{"name":"Luka Zoric","id":"2567"},{"name":"Fran Vazquez","id":"2597"},{"name":"Andy Panko","id":"2570"},{"name":"Kosta Perovic","id":"2658"},{"name":"Txemi Urtasun","id":"2616"},{"name":"Sergi Vidal","id":"2617"},{"name":"Marcus Williams","id":"2621"},{"name":"Oliver Lafayette","id":"2624"},{"name":"Marko Popovic","id":"2559"},{"name":"Tremmell Darden","id":"2581"},{"name":"Paulius Jankunas","id":"2566"},{"name":"Darjus Lavrinovic","id":"2631"},{"name":"Ksistof Lavrinovic","id":"2583"},{"name":"Rimantas Kaukenas","id":"2579"},{"name":"Mindaugas Kuzminskas","id":"2640"},{"name":"Robertas Javtokas","id":"2647"},{"name":"Jeff Foote","id":"2662"}];</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div id="site-nav"></div>
+
+<main id="main">
+
+  <section class="page-header">
+    <div class="container">
+      <p class="crumb"><a href="index.html">Home</a> / PBA 2K Cyberface Search</p>
+      <h1>PBA 2K Cyberface Search</h1>
+      <p>Find any PBA or Asian league player's cyberface ID used in PBA 2K rosters. Just start typing — results filter instantly.</p>
+    </div>
+  </section>
+
+  <section class="section-pad tight">
+    <div class="container">
+
+      <!-- Search -->
+      <div class="cf-search-wrap">
+        <div class="cf-search-box">
+          <svg class="cf-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="text" id="cfSearch" placeholder="Search PBA player name or cyberface ID..." autofocus>
+          <button class="cf-clear-btn" id="cfClear" aria-label="Clear search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+        <div class="cf-count" id="cfCount">Loading player data...</div>
+      </div>
+
+      <!-- Quick Filters -->
+      <div class="cf-quick-filters">
+        <span class="cf-qf-label">Quick Search</span>
+        <div class="cf-qf-buttons" id="cfQuickFilters">
+          <button class="cf-qf-btn" data-player="Kai Sotto">Kai Sotto</button>
+          <button class="cf-qf-btn" data-player="June Mar Fajardo">June Mar Fajardo</button>
+          <button class="cf-qf-btn" data-player="Scottie Thompson">Scottie Thompson</button>
+          <button class="cf-qf-btn" data-player="Thirdy Ravena">Thirdy Ravena</button>
+          <button class="cf-qf-btn" data-player="Japeth Aguilar">Japeth Aguilar</button>
+          <button class="cf-qf-btn" data-player="Rhenz Abando">Rhenz Abando</button>
+        </div>
+      </div>
+
+      <!-- Results -->
+      <div class="cf-results" id="cfResults"></div>
+      <div class="cf-empty" id="cfEmpty">
+        <svg class="cf-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <h3>No players found</h3>
+        <p>Try another search term.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div id="site-credits"></div>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  /* ---------------------------------------------------------
+     PBA 2K Cyberface Search — fetches JSON data
+     --------------------------------------------------------- */
+
+  (function() {
+    const searchInput = document.getElementById("cfSearch");
+    const resultsEl   = document.getElementById("cfResults");
+    const emptyEl     = document.getElementById("cfEmpty");
+    const countEl     = document.getElementById("cfCount");
+    const clearBtn    = document.getElementById("cfClear");
+    const quickBtns   = document.querySelectorAll(".cf-qf-btn");
+    /* ---- Source data ---- */
+    const RAW_PLAYERS = CYBERFACES_DATA;
+    console.log("PBA database loaded: " + RAW_PLAYERS.length + " players");
+
+    /* ---- Pre-compute search fields once ---- */
+    const players = RAW_PLAYERS.map(function(p) {
+      return {
+        name: p.name,
+        id: p.id,
+        search: (p.name + " " + p.id).toLowerCase()
+      };
+    });
+    countEl.textContent = "Loaded " + players.length + " players";
+
+    /* ---- Render a single result card ---- */
+    function renderCard(player) {
+      const card = document.createElement("div");
+      card.className = "cf-card fade-in";
+      card.innerHTML =
+        '<div class="cf-card-body">' +
+          '<h3 class="cf-card-name">' + escapeHTML(player.name) + '</h3>' +
+          '<div class="cf-card-id-row">' +
+            '<span class="cf-card-label">Cyberface ID:</span>' +
+            '<span class="cf-card-id">' + escapeHTML(player.id) + '</span>' +
+          '</div>' +
+          '<button class="cf-copy-btn" data-id="' + escapeHTML(player.id) + '" data-name="' + escapeHTML(player.name) + '">' +
+            '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>' +
+            ' Copy ID' +
+          '</button>' +
+        '</div>';
+      card.querySelector(".cf-copy-btn").addEventListener("click", function() {
+        var id = this.dataset.id;
+        navigator.clipboard.writeText(id).then(function() {
+          qol2kShowToast("Copied Cyberface ID: " + id);
+        }).catch(function() {
+          var ta = document.createElement("textarea");
+          ta.value = id;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          document.body.removeChild(ta);
+          qol2kShowToast("Copied Cyberface ID: " + id);
+        });
+      });
+      return card;
+    }
+
+    /* ---- Simple escape helper ---- */
+    function escapeHTML(str) {
+      var d = document.createElement("div");
+      d.textContent = str;
+      return d.innerHTML;
+    }
+
+    /* ---- Filter & render ---- */
+    var debounceTimer;
+    function filterAndRender() {
+      var q = searchInput.value.trim().toLowerCase();
+      var filtered;
+      if (!q) {
+        filtered = players.slice(0, 50);
+      } else {
+        filtered = players.filter(function(p) {
+          return p.search.indexOf(q) !== -1;
+        }).slice(0, 50);
+      }
+      countEl.textContent = "Found " + filtered.length + " Player" + (filtered.length !== 1 ? "s" : "");
+      resultsEl.innerHTML = "";
+      if (filtered.length === 0) {
+        emptyEl.classList.add("show");
+      } else {
+        emptyEl.classList.remove("show");
+        var frag = document.createDocumentFragment();
+        filtered.forEach(function(p) { frag.appendChild(renderCard(p)); });
+        resultsEl.appendChild(frag);
+      }
+      clearBtn.classList.toggle("show", q.length > 0);
+    }
+
+    /* ---- Input event ---- */
+    searchInput.addEventListener("input", function() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(filterAndRender, 200);
+    });
+
+    /* ---- Clear button ---- */
+    clearBtn.addEventListener("click", function() {
+      searchInput.value = "";
+      filterAndRender();
+      searchInput.focus();
+    });
+
+    /* ---- Quick filter buttons ---- */
+    quickBtns.forEach(function(btn) {
+      btn.addEventListener("click", function() {
+        searchInput.value = this.dataset.player;
+        filterAndRender();
+        searchInput.focus();
+      });
+    });
+
+    /* ---- Initial render (will run again after fetch) ---- */
+    filterAndRender();
+  })();
+</script>
+<style>
+  /* =========================================================
+     Cyberface Search — page-specific styles
+     ========================================================= */
+
+  .cf-search-wrap { padding: 8px 0 12px; }
+
+  .cf-search-box { position: relative; max-width: 580px; }
+
+  .cf-search-box input {
+    width: 100%;
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 17px;
+    padding: 16px 48px 16px 48px;
+    border-radius: var(--radius-md);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    outline: none;
+  }
+
+  .cf-search-box input:focus {
+    border-color: var(--red);
+    box-shadow: 0 0 0 4px var(--red-subtle), 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  .cf-search-box input::placeholder { color: var(--text-mute); }
+
+  .cf-search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    color: var(--text-mute);
+    pointer-events: none;
+  }
+
+  .cf-clear-btn {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: var(--panel-hover);
+    color: var(--text-dim);
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .cf-clear-btn:hover { background: var(--red-bg); color: var(--red); }
+  .cf-clear-btn.show { display: inline-flex; }
+  .cf-clear-btn svg { width: 14px; height: 14px; }
+
+  .cf-count {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 14px;
+    transition: color 0.2s ease;
+  }
+
+  .cf-quick-filters {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px 0 24px;
+    border-bottom: 1px solid var(--panel-border-soft);
+    margin-bottom: 28px;
+  }
+
+  .cf-qf-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    margin-right: 4px;
+  }
+
+  .cf-qf-btn {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dim);
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: 999px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+  }
+
+  .cf-qf-btn:hover {
+    color: var(--red);
+    border-color: var(--red-dim);
+    background: var(--red-bg);
+    transform: translateY(-1px);
+  }
+
+  .cf-qf-btn:active { transform: translateY(0); }
+
+  .cf-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+  }
+
+  .cf-card {
+    background: var(--panel);
+    border: 1px solid var(--panel-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .cf-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--red-dim);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+  }
+
+  .cf-card-body { padding: 20px 22px 18px; display: flex; flex-direction: column; gap: 10px; }
+
+  .cf-card-name {
+    font-family: var(--font-display);
+    font-size: 19px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.15;
+  }
+
+  .cf-card-id-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .cf-card-label {
+    font-size: 10.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+  }
+
+  .cf-card-id {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--red);
+    letter-spacing: 0.02em;
+  }
+
+  .cf-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 9px 16px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--red-dim);
+    background: var(--red-bg);
+    color: var(--red);
+    cursor: pointer;
+    transition: all 0.18s ease;
+    align-self: flex-start;
+    margin-top: 2px;
+  }
+
+  .cf-copy-btn:hover {
+    background: var(--red);
+    color: #fff;
+    box-shadow: 0 4px 16px var(--red-glow);
+    transform: translateY(-1px);
+  }
+
+  .cf-copy-btn:active { transform: translateY(0); }
+  .cf-copy-btn svg { flex-shrink: 0; }
+
+  .cf-empty {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    text-align: center;
+    border: 1px dashed var(--panel-border);
+    border-radius: var(--radius-md);
+  }
+
+  .cf-empty.show { display: flex; }
+
+  .cf-empty-icon {
+    width: 44px;
+    height: 44px;
+    color: var(--text-mute);
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+
+  .cf-empty h3 {
+    font-family: var(--font-display);
+    font-size: 22px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 6px;
+  }
+
+  .cf-empty p { font-size: 14px; color: var(--text-mute); margin: 0; }
+
+  .cf-card.fade-in { animation: cfFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+  @keyframes cfFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 600px) {
+    .cf-search-box input { font-size: 15px; padding: 14px 44px 14px 44px; }
+    .cf-results { grid-template-columns: 1fr; }
+    .cf-quick-filters { gap: 8px; }
+    .cf-qf-btn { font-size: 12px; padding: 6px 13px; }
+  }
+</style>
+</body>
+</html>

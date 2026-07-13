@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QOL2K — Quality of Life Mods for NBA 2K14</title>
-<meta name="description" content="QOL2K is a community mod repository for NBA 2K14 — rosters, cyberfaces, courts, jerseys, and more, organized and easy to browse.">
+<title>QOL2K — Quality of Life Mods for NBA 2K14, 2K23, PBA 2K & FIBA 2K</title>
+<meta name="description" content="QOL2K is a community mod hub for NBA 2K14, NBA 2K23, PBA 2K, and FIBA 2K — rosters, cyberfaces, courts, jerseys, and more, organized and easy to browse.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -17,88 +17,67 @@
 
 <main id="main">
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container hero-inner">
-      <p class="eyebrow">NBA 2K14 Mod Archive</p>
-      <h1>
-        <span class="line">Quality of Life</span>
-        <span class="line accent"><span id="heroType" class="type-line"></span></span>
-      </h1>
-      <p class="hero-lede">QOL2K collects and organizes the best community mods for NBA 2K14 — rosters, faces, courts, jerseys, and more — so you spend less time hunting through forums and more time playing.</p>
+  <!-- Hero with Video Background -->
+  <section class="hero-video-wrap">
+    <video autoplay muted loop playsinline poster="images/PBA-1.jpg">
+      <source src="images/header-vid.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="tagline">Quality of Life Mods</p>
+      <h1>Everything NBA 2K</h1>
+      <p class="hero-sub">Discover rosters, cyberfaces, courts, scoreboards, tools, and total conversions across multiple basketball gaming communities.</p>
       <div class="hero-actions">
-        <a href="rosters.html" class="btn btn-primary">Browse Mods</a>
-        <a href="https://www.facebook.com/share/1CEVisA8rs/" class="btn btn-facebook" target="_blank" rel="noopener">Facebook Page</a>
-      </div>
-      <div class="hero-stats">
-        <div class="hero-stat"><span class="num">12</span><span class="label">Mod Categories</span></div>
-        <div class="hero-stat"><span class="num">40+</span><span class="label">Community Mods</span></div>
-        <div class="hero-stat"><span class="num">2014</span><span class="label">Still Being Modded</span></div>
+        <a href="#game-hubs" class="btn btn-primary">Browse Archives</a>
+        <a href="https://www.facebook.com/share/1CEVisA8rs/" class="btn btn-secondary" target="_blank" rel="noopener">Join Community</a>
       </div>
     </div>
   </section>
 
-  <!-- Featured Categories -->
-  <section class="section-pad">
+  <!-- Stats Strip -->
+  <div class="home-stats" id="homeStats"></div>
+
+  <!-- Game Hub Section -->
+  <section class="section-pad" id="game-hubs">
     <div class="container">
       <div class="section-head reveal">
         <div>
-          <h2>Every part of the game, covered</h2>
+          <p class="eyebrow">Game Ecosystems</p>
+          <h2>Choose your game</h2>
         </div>
-        <p>From player likeness to court design, each category is its own organized archive with search built in.</p>
+        <p>Each game has its own dedicated hub with organized mods, tools, and community content.</p>
       </div>
-      <div class="cat-grid" id="catGrid"></div>
+      <div class="game-hub-grid" id="gameHubGrid"></div>
     </div>
   </section>
 
-  <!-- Latest Releases -->
+  <!-- Featured Projects -->
   <section class="section-pad tight section-alt">
     <div class="container">
       <div class="section-head reveal">
         <div>
-          <p class="eyebrow">Latest Releases</p>
-          <h2>Fresh off the workbench</h2>
+          <p class="eyebrow">Featured Projects</p>
+          <h2>What's new at QOL2K</h2>
         </div>
-        <p>Recently added or updated mods across every category, newest first.</p>
+        <p>Our latest and most popular projects across the community.</p>
       </div>
-      <div class="latest-strip" id="latestGrid"></div>
+      <div class="feat-grid" id="featGrid"></div>
     </div>
   </section>
 
-  <!-- Why QOL2K -->
-  <section class="section-pad">
+  <!-- Community Section -->
+  <section class="community-section reveal">
     <div class="container">
-      <div class="section-head reveal">
-        <div>
-          <h2>Built like an archive, not a forum thread</h2>
-        </div>
-      </div>
-      <div class="why-grid">
-        <div class="why-card reveal">
-          <div class="num">01</div>
-          <h3>Organized by category</h3>
-          <p>No more scrolling through years-old forum posts. Every mod lives in a category built for it.</p>
-        </div>
-        <div class="why-card reveal">
-          <div class="num">02</div>
-          <h3>Consistent mod details</h3>
-          <p>Author, version, and update date shown up front for every single mod, every time.</p>
-        </div>
-        <div class="why-card reveal">
-          <div class="num">03</div>
-          <h3>Creator credit, always</h3>
-          <p>Original modders are credited on every release, with a dedicated credits section site-wide.</p>
-        </div>
-        <div class="why-card reveal">
-          <div class="num">04</div>
-          <h3>Built for the community</h3>
-          <p>QOL2K is community-run and community-facing — join us on Facebook to follow new releases.</p>
-        </div>
-      </div>
+      <h2>Follow QOL2K</h2>
+      <p>Join the community on Facebook for the latest releases, previews, and updates across all supported games.</p>
+      <a href="https://www.facebook.com/share/1CEVisA8rs/" class="btn-community" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14C17.17 2.1 15.9 2 14.6 2 11.9 2 10 3.66 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
+        Visit Facebook Page
+      </a>
     </div>
   </section>
 
-  <!-- Credits Preview -->
+  <!-- Credits -->
   <div id="site-credits"></div>
 
 </main>
@@ -108,12 +87,12 @@
 <script src="js/data.js"></script>
 <script src="js/app.js"></script>
 <script>
-  qol2kRenderNav("home");
+  qol2kRenderNav("home", "portal");
   qol2kRenderFooter();
   qol2kRenderCredits();
-  qol2kRenderCategoryGrid("catGrid");
-  qol2kRenderLatest("latestGrid");
-  qol2kInitTypewriter("heroType", ["Mods for 2K.", "Rosters, Updated.", "Cyberfaces, Rebuilt.", "Courts, Redrawn."]);
+  qol2kRenderHomeStats("homeStats");
+  qol2kRenderGameHubs("gameHubGrid");
+  qol2kRenderFeaturedProjects("featGrid");
   qol2kInitReveal();
 </script>
 </body>

@@ -1,7 +1,51 @@
 /* =========================================================
    QOL2K — shared placeholder data
-   Categories + mod entries. Swap with real data/links later.
+   Categories + mod entries for all game ecosystems.
    ========================================================= */
+
+/* Game hubs featured on the homepage */
+const QOL2K_GAME_HUBS = [
+  {
+    key: "nba2k14",
+    title: "NBA 2K14",
+    desc: "The original QOL2K archive featuring rosters, cyberfaces, courts, and presentation mods.",
+    btn: "Enter Archive",
+    href: "nba2k14.html",
+    color: "nba2k14"
+  },
+  {
+    key: "nba2k23",
+    title: "NBA 2K23",
+    desc: "Next-generation roster and visual modification archive.",
+    btn: "Coming Soon",
+    href: "nba2k23.html",
+    color: "nba2k23"
+  },
+  {
+    key: "pba2k",
+    title: "PBA 2K",
+    desc: "Philippine basketball conversions, rosters, and local league content.",
+    btn: "Explore PBA 2K",
+    href: "pba2k.html",
+    color: "pba2k"
+  },
+  {
+    key: "fiba2k",
+    title: "FIBA 2K",
+    desc: "International basketball modifications and tournament content.",
+    btn: "Coming Soon",
+    href: "fiba2k.html",
+    color: "fiba2k"
+  }
+];
+
+/* Featured projects for the homepage showcase */
+const QOL2K_FEATURED = [
+  { category: "Roster", title: "QOL2K 2026 Roster", desc: "Complete 2026-27 season roster update with corrected ratings, tendencies, and lineups.", icon: "R", url: "rosters.html" },
+  { category: "Cyberface", title: "QOL2K Cyberface Collection", desc: "Complete cyberface collection with high-detail player face models for maximum realism.", icon: "F", url: "cyberfaces.html" },
+  { category: "Audio", title: "QOL2K Audio Studio", desc: "Custom audio packages and sound enhancements for an immersive game-day atmosphere.", icon: "A", url: "#" },
+  { category: "Community", title: "Community Favorites", desc: "Curated selection of the most popular community mods and tools for NBA 2K14.", icon: "★", url: "rosters.html" }
+];
 
 const QOL2K_CATEGORIES = [
   { key: "rosters",       title: "Rosters",       short: "Rosters",       desc: "Updated team rosters, ratings, and accuracy overhauls for the current NBA landscape.",       page: "rosters.html" },

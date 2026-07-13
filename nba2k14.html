@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NBA 2K14 Mod Archive — QOL2K</title>
+<meta name="description" content="Quality of Life Mods for NBA 2K14 — Curated rosters, cyberfaces, courts, scoreboards, presentations, and tools built to keep NBA 2K14 alive.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div id="site-nav"></div>
+
+<main id="main">
+
+  <!-- Hero with Video Background — bottom cropped -->
+  <section class="hero-video-wrap nba2k14-hero">
+    <video autoplay muted loop playsinline poster="images/PBA-1.jpg">
+      <source src="images/header-vid.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="tagline">NBA 2K14 Mod Archive</p>
+      <h1>Quality of Life Mods<br>for NBA 2K14</h1>
+      <p class="hero-sub">Curated rosters, cyberfaces, courts, scoreboards, presentations, and tools built to keep NBA 2K14 alive.</p>
+      <div class="hero-actions">
+        <a href="#featured-categories" class="btn btn-primary">Browse Archive</a>
+        <a href="https://www.facebook.com/share/1CEVisA8rs/" class="btn btn-secondary" target="_blank" rel="noopener">Visit Facebook Page</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Strip -->
+  <div class="n2k-stats" id="n2kStats"></div>
+
+  <!-- Featured Categories -->
+  <section class="section-pad" id="featured-categories">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Featured Categories</p>
+          <h2>Every part of the game, covered</h2>
+        </div>
+        <p>From player likeness to court design, each category is its own organized archive with search built in.</p>
+      </div>
+      <div class="n2k-cats" id="n2kCats"></div>
+    </div>
+  </section>
+
+  <!-- Why QOL2K -->
+  <section class="section-pad section-alt">
+    <div class="container">
+      <div class="why-n2k reveal">
+        <div class="why-n2k-text">
+          <p class="eyebrow">Why QOL2K?</p>
+          <h2>Built like an archive, not a forum thread</h2>
+          <p>QOL2K organizes years of NBA 2K14 community content into one accessible archive, making it easier for players to find rosters, faces, courts, presentations, and tools without searching through scattered forum posts and links.</p>
+        </div>
+        <div class="why-n2k-stats">
+          <div class="why-n2k-stat">
+            <span class="num">12</span>
+            <span class="label">Mod Categories</span>
+          </div>
+          <div class="why-n2k-stat">
+            <span class="num">500+</span>
+            <span class="label">Community Mods</span>
+          </div>
+          <div class="why-n2k-stat">
+            <span class="num">200+</span>
+            <span class="label">Cyberfaces</span>
+          </div>
+          <div class="why-n2k-stat">
+            <span class="num">2014</span>
+            <span class="label">Still Being Modded</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools Highlight -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow">Essential Tools</p>
+          <h2>Tools for the modding community</h2>
+        </div>
+        <p>Every tool you need to create, edit, and install NBA 2K14 mods.</p>
+      </div>
+      <div class="n2k-tools" id="n2kTools"></div>
+      <div style="text-align:center;margin-top:28px;">
+        <a href="tools.html" class="btn btn-secondary">View All Tools</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <section class="footer-cta reveal">
+    <div class="container">
+      <h2>Keep NBA 2K14 Alive</h2>
+      <p>Explore the archive, download mods, and support the project that keeps NBA 2K14 running on PC with updated content.</p>
+      <div class="cta-actions">
+        <a href="rosters.html" class="btn btn-primary">Browse Mods</a>
+        <a href="donations.html" class="btn btn-secondary">Support QOL2K</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credits -->
+  <div id="site-credits"></div>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script>
+  qol2kRenderNav("home", undefined, "nba2k14");
+  qol2kRenderFooter();
+  qol2kRenderCredits();
+  qol2kRenderN2KStats("n2kStats");
+  qol2kRenderN2KCats("n2kCats");
+  qol2kRenderN2KTools("n2kTools");
+  qol2kInitReveal();
+</script>
+</body>
+</html>

@@ -4,12 +4,37 @@
    Every page loads data.js then this file.
    ========================================================= */
 
-/* Nav item structure:
+/* =========================================================
+   Navigation Structures
+
+   Two nav modes:
+   - "portal": Simple top-level game hub links used on the homepage.
+   - (default): Detailed dropdown archive nav used on NBA 2K14 pages.
+
+   Nav item structure:
    - Simple items: { label, href, key }
    - Dropdown groups: { label, key, children: [{ label, href, key }, …] }
-   The mobile menu renders all items flat; the desktop nav uses dropdowns. */
-const QOL2K_NAV_ITEMS = [
+   The mobile menu renders all items flat; the desktop nav uses dropdowns.
+   ========================================================= */
+
+/* PBA 2K nav — minimal links for the PBA landing page */
+const QOL2K_NAV_ITEMS_PBA = [
+  { label: "Donate", href: "donations.html", key: "donations" },
+  { label: "Cyberface Search", href: "pba-cyberface-search.html", key: "pba-cyberface-search" }
+];
+
+/* Portal nav — homepage as a game selection hub */
+const QOL2K_NAV_ITEMS_PORTAL = [
   { label: "Home", href: "index.html", key: "home" },
+  { label: "NBA 2K14", href: "nba2k14.html", key: "nba2k14" },
+  { label: "NBA 2K23", href: "nba2k23.html", key: "nba2k23" },
+  { label: "PBA 2K", href: "pba2k.html", key: "pba2k" },
+  { label: "FIBA 2K", href: "fiba2k.html", key: "fiba2k" },
+  { label: "Donate", href: "donations.html", key: "donations" }
+];
+
+/* Detailed NBA 2K14 archive nav — used on all archive sub-pages */
+const QOL2K_NAV_ITEMS = [
   { label: "Donate", href: "donations.html", key: "donations" },
   { label: "Tools", href: "tools.html", key: "tools" },
   { label: "Rosters", href: "rosters.html", key: "rosters" },
@@ -44,6 +69,31 @@ const QOL2K_NAV_ITEMS = [
 
 const FACEBOOK_URL = "https://www.facebook.com/share/1CEVisA8rs/";
 
+/* Breadcrumb context mapping — controls the nav context indicator */
+const QOL2K_BREADCRUMB_MAP = {
+  "home": ["HOME"],
+  "nba2k14": ["NBA 2K14"],
+  "nba2k23": ["NBA 2K23"],
+  "pba2k": ["PBA 2K"],
+  "fiba2k": ["FIBA 2K"],
+  "donations": ["Donate"],
+  "tools": ["NBA 2K14", "Tools"],
+  "rosters": ["NBA 2K14", "Rosters"],
+  "cyberfaces": ["NBA 2K14", "Cyberfaces"],
+  "cyberface-search": ["NBA 2K14", "Cyberface Search"],
+  "portraits": ["NBA 2K14", "Portraits"],
+  "jerseys": ["NBA 2K14", "Jerseys"],
+  "shoes": ["NBA 2K14", "Shoes"],
+  "courts": ["NBA 2K14", "Courts"],
+  "dornas": ["NBA 2K14", "Dornas"],
+  "stadiums": ["NBA 2K14", "Stadiums"],
+  "presentations": ["NBA 2K14", "Presentations"],
+  "scoreboards": ["NBA 2K14", "Scoreboards"],
+  "globals": ["NBA 2K14", "Globals"],
+  "reshade": ["NBA 2K14", "ReShade"],
+  "pba-cyberface-search": ["PBA 2K", "Cyberface Search"]
+};
+
 /* Map category keys to their preview image filenames */
 const QOL2K_PREVIEW_IMAGES = {
   rosters: "roster-update.png",
@@ -70,10 +120,11 @@ const ICONS = {
    Navigation
    --------------------------------------------------------- */
 
-/* Flatten grouped items for mobile-menu rendering */
-function qol2kFlattenNavItems() {
+/* Flatten grouped items for mobile-menu rendering.
+   Accepts the nav items array so portal and detailed navs both work. */
+function qol2kFlattenNavItems(items) {
   const flat = [];
-  QOL2K_NAV_ITEMS.forEach(item => {
+  items.forEach(item => {
     if (item.children) {
       item.children.forEach(child => flat.push(child));
     } else {
@@ -94,12 +145,25 @@ function qol2kGroupActive(group, activeKey) {
   return group.children && group.children.some(c => c.key === activeKey);
 }
 
-function qol2kRenderNav(activeKey) {
+function qol2kRenderNav(activeKey, navType, breadcrumbKey) {
   const mount = document.getElementById("site-nav");
   if (!mount) return;
 
+  /* Resolve breadcrumb key defaults to activeKey */
+  const crumbKey = breadcrumbKey || activeKey;
+
+  /* Choose nav structure based on page type */
+  var navItems;
+  if (navType === "portal") {
+    navItems = QOL2K_NAV_ITEMS_PORTAL;
+  } else if (navType === "pba") {
+    navItems = QOL2K_NAV_ITEMS_PBA;
+  } else {
+    navItems = QOL2K_NAV_ITEMS;
+  }
+
   /* Desktop nav – render groups as dropdowns */
-  const desktopLinks = QOL2K_NAV_ITEMS.map(item => {
+  const desktopLinks = navItems.map(item => {
     if (item.children) {
       const groupActive = qol2kGroupActive(item, activeKey);
       const childLinks = item.children.map(c => qol2kNavLinkHTML(c, activeKey)).join("");
@@ -116,16 +180,28 @@ function qol2kRenderNav(activeKey) {
   }).join("");
 
   /* Mobile nav – flat list of all items */
-  const flatItems = qol2kFlattenNavItems();
+  const flatItems = qol2kFlattenNavItems(navItems);
   const mobileLinks = flatItems.map(item => qol2kNavLinkHTML(item, activeKey)).join("");
+
+  /* Generate breadcrumb HTML */
+  var crumbLabels = QOL2K_BREADCRUMB_MAP[crumbKey] || [crumbKey];
+  var breadcrumbHTML = crumbLabels.map(function(label, i) {
+    if (i === crumbLabels.length - 1) {
+      return '<span class="nav-crumb current">' + label + '</span>';
+    }
+    return '<span class="nav-crumb">' + label + '</span>';
+  }).join('<span class="nav-sep">/</span>');
 
   mount.innerHTML = `
     <nav class="nav" id="mainNav">
       <div class="container">
-        <a href="index.html" class="brand">
-          <span class="brand-mark">QOL<span>2K</span></span>
-          <span class="brand-sub">Quality of Life Mods</span>
-        </a>
+        <div class="nav-brand-group">
+          <a href="index.html" class="brand">
+            <span class="brand-mark">QOL<span>2K</span></span>
+            <span class="brand-sub">Quality of Life Mods</span>
+          </a>
+          <div class="nav-breadcrumb">${breadcrumbHTML}</div>
+        </div>
         <ul class="nav-links">${desktopLinks}</ul>
         <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
           <span></span><span></span><span></span>
@@ -248,6 +324,297 @@ function qol2kRenderFooter() {
       </div>
     </footer>
   `;
+}
+
+/* ---------------------------------------------------------
+   Game Hub Cards (homepage)
+   --------------------------------------------------------- */
+function qol2kRenderGameHubs(mountId) {
+  const mount = document.getElementById(mountId);
+  if (!mount) return;
+  mount.innerHTML = QOL2K_GAME_HUBS.map(function(hub) {
+    var isAvailable = hub.href && hub.href !== "#";
+    return '<a class="game-card reveal' + (isAvailable ? '' : ' coming-soon') + '" href="' + hub.href + '" data-game="' + hub.color + '">' +
+      (!isAvailable ? '<span class="game-coming-badge">Coming Soon</span>' : '') +
+      '<div class="game-card-icon">' + hub.title.charAt(0) + '</div>' +
+      '<h3>' + hub.title + '</h3>' +
+      '<p>' + hub.desc + '</p>' +
+      '<span class="game-link">' + (isAvailable ? hub.btn : 'Coming Soon') + '</span>' +
+      '</a>';
+  }).join("");
+}
+
+/* ---------------------------------------------------------
+   NBA 2K14 Landing Page Stats
+   --------------------------------------------------------- */
+function qol2kRenderN2KStats(mountId) {
+  var mount = document.getElementById(mountId);
+  if (!mount) return;
+  mount.innerHTML = `
+    <div class="n2k-stat reveal">
+      <span class="num">12<span class="red">+</span></span>
+      <span class="label">Categories</span>
+    </div>
+    <div class="n2k-stat reveal">
+      <span class="num">500<span class="red">+</span></span>
+      <span class="label">Archived Mods</span>
+    </div>
+    <div class="n2k-stat reveal">
+      <span class="num">10<span class="red">+</span></span>
+      <span class="label">Years of Support</span>
+    </div>
+    <div class="n2k-stat reveal">
+      <span class="num">Active</span>
+      <span class="label">Community</span>
+    </div>
+  `;
+}
+
+/* ---------------------------------------------------------
+   NBA 2K14 Landing Page — Featured Categories
+   --------------------------------------------------------- */
+function qol2kRenderN2KCats(mountId) {
+  var mount = document.getElementById(mountId);
+  if (!mount) return;
+  var cats = [
+    { icon: "R", title: "Rosters", desc: "Updated season rosters, draft classes, and franchise files.", href: "rosters.html", image: "roster-update.png" },
+    { icon: "F", title: "Cyberfaces", desc: "Player face scans and appearance upgrades for maximum realism.", href: "cyberfaces.html", image: "cyberfaces.png" },
+    { icon: "P", title: "Portraits", desc: "Redrawn player portrait artwork for menus, rosters, and UI.", href: "portraits.html", image: "portraits.png" },
+    { icon: "J", title: "Jerseys", desc: "Accurate and alternate jersey sets for teams across every era.", href: "jerseys.html", image: "jerseys.png" },
+    { icon: "C", title: "Courts", desc: "Rebuilt arena floors matching current team branding and designs.", href: "courts.html", image: "courts.png" },
+    { icon: "S", title: "Scoreboards", desc: "Modernized scoreboard and HUD designs for a cleaner in-game overlay.", href: "scoreboards.html", image: "scoarboards.png" }
+  ];
+  mount.innerHTML = cats.map(function(c) {
+    var bgStyle = c.image ? ' style="background-image:linear-gradient(rgba(10,10,10,0.65),rgba(10,10,10,0.85)),url(images/' + c.image + ');background-size:cover;background-position:center;"' : '';
+    return '<a class="n2k-cat-card reveal" href="' + c.href + '"' + bgStyle + '>' +
+      '<div class="cat-icon">' + c.icon + '</div>' +
+      '<h3>' + c.title + '</h3>' +
+      '<p>' + c.desc + '</p>' +
+      '<span class="cat-arrow">Browse</span>' +
+      '</a>';
+  }).join("");
+}
+
+/* ---------------------------------------------------------
+   NBA 2K14 Landing Page — Tools Highlight
+   --------------------------------------------------------- */
+function qol2kRenderN2KTools(mountId) {
+  var mount = document.getElementById(mountId);
+  if (!mount) return;
+  var tools = [
+    { name: "RED MC", desc: "Roster editor for NBA 2K14", icon: "R" },
+    { name: "Blender", desc: "3D modeling for cyberfaces & courts", icon: "B" },
+    { name: "3DM Mod Tool", desc: "File extraction and repacking", icon: "3" },
+    { name: "NBA 2K Audio Editor", desc: "Sound and audio file editing", icon: "A" },
+    { name: "QOL2K Audio Studio", desc: "Custom audio packages and tools", icon: "Q" }
+  ];
+  mount.innerHTML = tools.map(function(t) {
+    return '<div class="n2k-tool-card reveal">' +
+      '<div class="tool-icon">' + t.icon + '</div>' +
+      '<h4>' + t.name + '</h4>' +
+      '<p style="font-size:12px;color:var(--text-dim);margin:0;line-height:1.4;">' + t.desc + '</p>' +
+      '</div>';
+  }).join("");
+}
+
+/* ---------------------------------------------------------
+   PBA 2K — Stats
+   --------------------------------------------------------- */
+function qol2kRenderPBAStats(mountId) {
+  var mount = document.getElementById(mountId);
+  if (!mount) return;
+  mount.innerHTML = `
+    <div class="pba-stat reveal">
+      <span class="num">12</span>
+      <span class="label">PBA Teams</span>
+    </div>
+    <div class="pba-stat reveal">
+      <span class="num">100<span class="accent">+</span></span>
+      <span class="label">Player Models</span>
+    </div>
+    <div class="pba-stat reveal">
+      <span class="num">All<span class="accent">-</span>in<span class="accent">-</span>One</span>
+      <span class="label">Mega Pack</span>
+    </div>
+    <div class="pba-stat reveal">
+      <span class="num">Extract</span>
+      <span class="label">&amp; Play</span>
+    </div>
+  `;
+}
+
+/* ---------------------------------------------------------
+   PBA 2K — Image Carousel
+   --------------------------------------------------------- */
+function qol2kInitCarousel(carouselId) {
+  var carousel = document.getElementById(carouselId);
+  if (!carousel) return;
+
+  var track = carousel.querySelector(".carousel-track");
+  var slides = track.querySelectorAll(".carousel-slide");
+  var prevBtn = carousel.querySelector(".carousel-prev");
+  var nextBtn = carousel.querySelector(".carousel-next");
+  var dotsContainer = carousel.querySelector(".carousel-dots");
+
+  if (!track || slides.length === 0) return;
+
+  var currentIndex = 0;
+  var totalSlides = slides.length;
+  var autoAdvance = null;
+  var AUTO_INTERVAL = 4500;
+
+  /* Create dots */
+  for (var i = 0; i < totalSlides; i++) {
+    var dot = document.createElement("button");
+    dot.className = "carousel-dot" + (i === 0 ? " is-active" : "");
+    dot.setAttribute("role", "tab");
+    dot.setAttribute("aria-label", "Screenshot " + (i + 1) + " of " + totalSlides);
+    dot.setAttribute("aria-selected", i === 0 ? "true" : "false");
+    dot.addEventListener("click", (function(idx) {
+      return function() { goTo(idx); };
+    })(i));
+    dotsContainer.appendChild(dot);
+  }
+
+  var dots = dotsContainer.querySelectorAll(".carousel-dot");
+
+  function goTo(index) {
+    if (index < 0) index = totalSlides - 1;
+    if (index >= totalSlides) index = 0;
+    currentIndex = index;
+
+    track.style.transform = "translateX(-" + (currentIndex * 100) + "%)";
+
+    /* Update dots */
+    dots.forEach(function(d, i) {
+      var active = i === currentIndex;
+      d.classList.toggle("is-active", active);
+      d.setAttribute("aria-selected", active ? "true" : "false");
+    });
+
+    resetAutoAdvance();
+  }
+
+  function goNext() { goTo(currentIndex + 1); }
+  function goPrev() { goTo(currentIndex - 1); }
+
+  function resetAutoAdvance() {
+    if (autoAdvance) clearInterval(autoAdvance);
+    autoAdvance = setInterval(goNext, AUTO_INTERVAL);
+  }
+
+  /* Bind buttons */
+  if (prevBtn) prevBtn.addEventListener("click", goPrev);
+  if (nextBtn) nextBtn.addEventListener("click", goNext);
+
+  /* Keyboard navigation */
+  carousel.addEventListener("keydown", function(e) {
+    if (e.key === "ArrowLeft") { goPrev(); e.preventDefault(); }
+    if (e.key === "ArrowRight") { goNext(); e.preventDefault(); }
+  });
+
+  /* Pause on hover */
+  carousel.addEventListener("mouseenter", function() {
+    if (autoAdvance) clearInterval(autoAdvance);
+  });
+  carousel.addEventListener("mouseleave", function() {
+    resetAutoAdvance();
+  });
+
+  /* Touch/swipe support */
+  (function() {
+    var startX = 0;
+    var isDragging = false;
+
+    carousel.addEventListener("mousedown", function(e) {
+      startX = e.clientX;
+      isDragging = true;
+    });
+
+    carousel.addEventListener("mousemove", function(e) {
+      if (!isDragging) return;
+      var diff = startX - e.clientX;
+      if (Math.abs(diff) > 60) {
+        if (diff > 0) goNext(); else goPrev();
+        isDragging = false;
+      }
+    });
+
+    carousel.addEventListener("mouseup", function() { isDragging = false; });
+    carousel.addEventListener("mouseleave", function() { isDragging = false; });
+
+    carousel.addEventListener("touchstart", function(e) {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+    }, { passive: true });
+
+    carousel.addEventListener("touchmove", function(e) {
+      if (!isDragging) return;
+      var diff = startX - e.touches[0].clientX;
+      if (Math.abs(diff) > 60) {
+        if (diff > 0) goNext(); else goPrev();
+        isDragging = false;
+      }
+    }, { passive: true });
+
+    carousel.addEventListener("touchend", function() { isDragging = false; });
+  })();
+
+  /* Start auto-advance */
+  resetAutoAdvance();
+
+  /* Make carousel focusable */
+  carousel.setAttribute("tabindex", "0");
+}
+
+/* ---------------------------------------------------------
+   Home Stats Strip
+   --------------------------------------------------------- */
+function qol2kRenderHomeStats(mountId) {
+  var mount = document.getElementById(mountId);
+  if (!mount) return;
+  mount.innerHTML = `
+    <div class="home-stat reveal">
+      <span class="num">10<span class="red">+</span></span>
+      <span class="label">Years Modding</span>
+    </div>
+    <div class="home-stat reveal">
+      <span class="num">500<span class="red">+</span></span>
+      <span class="label">Mods Archived</span>
+    </div>
+    <div class="home-stat reveal">
+      <span class="num">4</span>
+      <span class="label">Game Platforms</span>
+    </div>
+    <div class="home-stat reveal">
+      <span class="num">Active</span>
+      <span class="label">Community</span>
+    </div>
+  `;
+}
+
+/* ---------------------------------------------------------
+   Featured Projects (homepage)
+   --------------------------------------------------------- */
+function qol2kRenderFeaturedProjects(mountId) {
+  var mount = document.getElementById(mountId);
+  if (!mount) return;
+  mount.innerHTML = QOL2K_FEATURED.map(function(item) {
+    return '<article class="feat-card reveal">' +
+      '<div class="feat-thumb">' +
+      '<span class="feat-tag">' + item.category + '</span>' +
+      '<span class="feat-thumb-img" style="display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:28px;color:var(--text-dim);opacity:0.3;">' + item.icon + '</span>' +
+      '</div>' +
+      '<div class="feat-body">' +
+      '<h3>' + item.title + '</h3>' +
+      '<p class="feat-desc">' + item.desc + '</p>' +
+      '</div>' +
+      '<a href="' + item.url + '" class="feat-btn">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>' +
+      'View Mods' +
+      '</a>' +
+      '</article>';
+  }).join("");
 }
 
 /* ---------------------------------------------------------
