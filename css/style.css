@@ -1462,77 +1462,6 @@ section { position: relative; }
 }
 
 /* =========================================================
-   PBA 2K — Features Grid
-   ========================================================= */
-.pba-features {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-}
-
-.pba-feature {
-  background: var(--panel);
-  border: 1px solid var(--panel-border);
-  border-radius: var(--radius-md);
-  padding: 28px 22px;
-  text-align: center;
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-}
-
-.pba-feature:hover {
-  transform: translateY(-4px);
-  border-color: var(--red-dim);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
-}
-
-.pba-feature-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto 16px;
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 700;
-  border: 1px solid var(--red-dim);
-  background: var(--red-bg);
-  color: var(--red);
-  transition: background 0.3s ease, border-color 0.3s ease;
-}
-
-.pba-feature:hover .pba-feature-icon {
-  background: var(--red-subtle);
-  border-color: var(--red);
-}
-
-.pba-feature h3 {
-  font-size: 18px;
-  margin-bottom: 8px;
-  letter-spacing: 0.03em;
-}
-
-.pba-feature p {
-  font-size: 13px;
-  color: var(--text-dim);
-  margin: 0;
-  line-height: 1.55;
-}
-
-@media (max-width: 800px) {
-  .pba-features {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 500px) {
-  .pba-features {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* =========================================================
    PBA 2K — Stats
    ========================================================= */
 .pba-stats {
@@ -1591,6 +1520,125 @@ section { position: relative; }
 @media (max-width: 420px) {
   .pba-stats {
     grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   Base Game Download Card (NBA 2K14)
+   Used on nba2k14.html and pba2k.html
+   ========================================================= */
+
+.n2k-download-base {
+  background: var(--bg-raised);
+  border-top: 1px solid var(--panel-border-soft);
+  border-bottom: 1px solid var(--panel-border-soft);
+}
+
+.n2k-download-card {
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-lg);
+  padding: 48px 40px 40px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.n2k-download-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--red);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+.n2k-download-card:hover::before {
+  transform: scaleX(1);
+}
+
+.n2k-download-card:hover {
+  border-color: var(--red-dim);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 40px rgba(255, 45, 45, 0.06);
+}
+
+.n2k-download-card-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  background: var(--red-bg);
+  border: 1px solid var(--red-dim);
+  color: var(--red);
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.n2k-download-card:hover .n2k-download-card-icon {
+  background: var(--red-subtle);
+  border-color: var(--red);
+  transform: scale(1.05);
+}
+
+.n2k-download-card-icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.n2k-download-card .eyebrow {
+  margin-bottom: 12px;
+}
+
+.n2k-download-card h2 {
+  font-size: clamp(26px, 3.4vw, 34px);
+  margin-bottom: 14px;
+  letter-spacing: 0.03em;
+}
+
+.n2k-download-card > p {
+  color: var(--text-dim);
+  font-size: 15px;
+  line-height: 1.7;
+  margin: 0 auto 24px;
+  max-width: 500px;
+}
+
+.n2k-download-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.n2k-download-note {
+  font-size: 11.5px;
+  color: var(--text-mute);
+  font-family: var(--font-mono);
+  margin: 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .n2k-download-card {
+    padding: 36px 24px 32px;
+  }
+  .n2k-download-card-icon {
+    width: 48px;
+    height: 48px;
+  }
+  .n2k-download-card-icon svg {
+    width: 22px;
+    height: 22px;
   }
 }
 

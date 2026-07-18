@@ -3,215 +3,690 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FIBA 2K — Coming Soon | QOL2K</title>
-<meta name="description" content="FIBA 2K mods coming soon to QOL2K. Follow the Facebook page for updates.">
+<title>FIBA 2K — International Basketball Mods for NBA 2K14 | QOL2K</title>
+<meta name="description" content="FIBA 2K is a complete international basketball conversion mod for NBA 2K14 — FIBA cyberfaces, scoreboards, jerseys, courts, globals, and more.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <style>
-/* Minimal coming-soon nav — brand only, no links */
-.cs-nav {
-  position: sticky;
-  top: 0;
-  z-index: 500;
-  height: var(--nav-height);
+/* =========================================================
+   FIBA 2K — Custom Styles
+   Accent: Red (matching site-wide palette)
+   ========================================================= */
+
+/* Hero */
+.fiba-hero {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--panel-border-soft);
   display: flex;
   align-items: center;
-  background: rgba(10, 10, 10, 0.78);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid transparent;
-  transition: background 0.3s ease, border-color 0.3s ease;
 }
-.cs-nav.is-scrolled {
-  background: rgba(8, 8, 8, 0.94);
-  border-bottom-color: var(--panel-border-soft);
+
+.fiba-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(255, 45, 45, 0.08), transparent 50%),
+    radial-gradient(ellipse at 70% 60%, rgba(255, 45, 45, 0.04), transparent 40%),
+    linear-gradient(135deg, #0A0A0A 0%, #151010 50%, #0A0A0A 100%);
+  z-index: 0;
 }
-.cs-nav .container {
-  display: flex;
-  align-items: center;
+
+.fiba-hero .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 10, 10, 0.50) 0%,
+    rgba(10, 10, 10, 0.25) 50%,
+    rgba(10, 10, 10, 0.70) 100%
+  );
+  z-index: 1;
+}
+
+.fiba-hero .hero-content {
+  position: relative;
+  z-index: 2;
   width: 100%;
   max-width: var(--container);
   margin: 0 auto;
   padding: 0 28px;
-}
-.cs-nav .brand {
-  display: flex;
-  align-items: baseline;
-  gap: 10px;
-  font-family: var(--font-display);
-  text-decoration: none;
-  color: var(--text);
-}
-.cs-nav .brand-mark {
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-}
-.cs-nav .brand-mark span { color: var(--red); }
-.cs-nav .brand-sub {
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.15em;
-  color: var(--text-mute);
-  text-transform: uppercase;
-  display: none;
-}
-@media (min-width: 560px) {
-  .cs-nav .brand-sub { display: inline; }
+  text-align: left;
+  display: block;
 }
 
-/* Hero */
-.cs-hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: calc(100vh - var(--nav-height));
-  padding: 60px 28px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.cs-hero-bg {
-  position: absolute;
-  inset: 0;
-  background: var(--bg);
-  z-index: 0;
-}
-.cs-hero-inner {
-  position: relative;
-  z-index: 1;
-  max-width: 600px;
-}
-.cs-hero .tagline {
+.fiba-hero .tagline {
   font-family: var(--font-mono);
   font-size: 12px;
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--red);
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
-.cs-hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(42px, 6vw, 72px);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  margin-bottom: 16px;
-  line-height: 1.05;
+
+.fiba-hero h1 {
+  font-size: clamp(40px, 5.5vw, 68px);
+  max-width: 700px;
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
 }
-.cs-hero h1 span { color: var(--red); }
-.cs-hero p {
+
+.fiba-hero .hero-sub {
   color: var(--text-dim);
-  font-size: 16px;
-  line-height: 1.65;
-  margin: 0 auto 32px;
-  max-width: 480px;
+  font-size: clamp(14px, 1.6vw, 17px);
+  max-width: 560px;
+  margin-bottom: 28px;
+  line-height: 1.6;
+  font-family: var(--font-body);
 }
-.cs-hero .cs-actions {
+
+.fiba-hero .hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  justify-content: center;
-}
-.cs-hero .btn-home {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14px;
-  padding: 12px 24px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--panel-border);
-  background: var(--panel);
-  color: var(--text);
-  text-decoration: none;
-  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.18s ease;
-}
-.cs-hero .btn-home:hover {
-  border-color: var(--red);
-  color: var(--red);
-  background: var(--red-bg);
-  transform: translateY(-2px);
-}
-.cs-hero .btn-home svg {
-  width: 16px;
-  height: 16px;
-}
-.cs-hero .btn-fb {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14px;
-  padding: 12px 24px;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--panel-border);
-  background: transparent;
-  color: var(--text-dim);
-  text-decoration: none;
-  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease, transform 0.18s ease;
-}
-.cs-hero .btn-fb:hover {
-  border-color: var(--red);
-  color: var(--red);
-  background: var(--red-bg);
-  transform: translateY(-2px);
+  justify-content: flex-start;
 }
 
-/* Divider line */
-.cs-divider {
-  width: 60px;
-  height: 2px;
-  background: var(--panel-border);
-  margin: 0 auto 28px;
-  border-radius: 1px;
+.fiba-hero .btn-secondary:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: var(--red-bg);
+}
+
+@media (max-width: 768px) {
+  .fiba-hero { height: 380px; }
+  .fiba-hero h1 { font-size: 32px; }
+  .fiba-hero .hero-sub { font-size: 14px; }
+}
+
+/* Stats Strip */
+.fiba-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--panel-border-soft);
+  border-bottom: 1px solid var(--panel-border-soft);
+}
+
+.fiba-stat {
+  background: var(--bg);
+  padding: 36px 24px 32px;
+  text-align: center;
+  transition: background 0.25s ease;
+}
+
+.fiba-stat:hover { background: var(--bg-raised); }
+
+.fiba-stat .num {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3vw, 38px);
+  font-weight: 700;
+  color: var(--text);
+  display: block;
+  line-height: 1;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.fiba-stat .num .accent { color: var(--red); }
+
+.fiba-stat .label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  display: block;
+  line-height: 1.4;
+}
+
+@media (max-width: 700px) {
+  .fiba-stats { grid-template-columns: repeat(2, 1fr); }
+  .fiba-stat { padding: 28px 16px 24px; }
+}
+@media (max-width: 420px) {
+  .fiba-stats { grid-template-columns: 1fr; }
+}
+
+/* Download Sections — Grid of Download Cards */
+.fiba-download-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.fiba-dl-card {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-md);
+  padding: 24px 22px 22px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.fiba-dl-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 0;
+  background: var(--red);
+  transition: height 0.35s ease;
+}
+
+.fiba-dl-card:hover::before { height: 100%; }
+
+.fiba-dl-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--red-dim);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+.fiba-dl-card-label {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 6px;
+}
+
+.fiba-dl-card h3 {
+  font-size: 17px;
+  margin-bottom: 8px;
+  letter-spacing: 0.02em;
+}
+
+.fiba-dl-card p {
+  font-size: 13px;
+  color: var(--text-dim);
+  margin: 0 0 14px;
+  line-height: 1.55;
+}
+
+.fiba-dl-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.fiba-dl-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
+  padding: 9px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--panel-border);
+  background: var(--bg-raised);
+  color: var(--text);
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color 0.18s ease, color 0.18s ease, background 0.18s ease, transform 0.15s ease;
+}
+
+.fiba-dl-btn:hover {
+  border-color: var(--red);
+  color: var(--red);
+  background: var(--red-bg);
+  transform: translateY(-1px);
+}
+
+.fiba-dl-btn svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* Wide card — spans full width for main files */
+.fiba-dl-card.wide {
+  grid-column: 1 / -1;
+}
+
+.fiba-dl-card.wide .fiba-dl-actions {
+  justify-content: center;
+}
+
+/* Section header within download area */
+.fiba-section-head {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.fiba-section-head .eyebrow { margin-bottom: 10px; }
+.fiba-section-head h2 { font-size: clamp(28px, 3.6vw, 38px); }
+.fiba-section-head p {
+  color: var(--text-dim);
+  font-size: 15px;
+  max-width: 520px;
+  margin: 12px auto 0;
+  line-height: 1.65;
+}
+
+/* Eyebrow override for FIBA pages */
+.eyebrow.fiba-eyebrow { color: var(--red); }
+
+/* Wide card spacing */
+.fiba-dl-card.wide { margin-top: 20px; }
+.fiba-dl-card.wide .fiba-dl-actions { justify-content: center; }
+
+/* FIBA Fantasy Roster Detail */
+.fiba-roster-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.fiba-roster-team {
+  background: var(--bg-raised);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+}
+
+.fiba-roster-team h4 {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin: 0 0 8px;
+  font-family: var(--font-mono);
+}
+
+.fiba-roster-team ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fiba-roster-team li {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  padding: 3px 0;
+  line-height: 1.5;
+}
+
+.fiba-roster-team li strong {
+  color: var(--text);
+  font-weight: 600;
+}
+
+@media (max-width: 560px) {
+  .fiba-roster-detail {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================================
+   FIBA 2K — Screenshots Carousel
+   Uses shared carousel class names from app.js
+   ========================================================= */
+
+.fiba-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  aspect-ratio: 16 / 9;
+}
+
+.fiba-carousel .carousel-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.fiba-carousel .carousel-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.fiba-carousel .carousel-slide a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.fiba-carousel .carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.fiba-carousel .carousel-slide:hover img {
+  transform: scale(1.03);
+}
+
+.fiba-carousel .carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(10, 10, 10, 0.7);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+  opacity: 0;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.fiba-carousel:hover .carousel-btn {
+  opacity: 1;
+}
+
+.fiba-carousel .carousel-btn:hover {
+  background: rgba(10, 10, 10, 0.9);
+  border-color: var(--red);
+  color: var(--red);
+}
+
+.fiba-carousel .carousel-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.fiba-carousel .carousel-prev {
+  left: 12px;
+}
+
+.fiba-carousel .carousel-next {
+  right: 12px;
+}
+
+.fiba-carousel .carousel-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 7px;
+  z-index: 10;
+}
+
+.fiba-carousel .carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+  padding: 0;
+}
+
+.fiba-carousel .carousel-dot:hover {
+  background: rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.2);
+}
+
+.fiba-carousel .carousel-dot.is-active {
+  background: var(--red);
+  border-color: var(--red);
+  transform: scale(1.2);
+}
+
+@media (max-width: 640px) {
+  .fiba-carousel .carousel-btn {
+    width: 32px;
+    height: 32px;
+    opacity: 1;
+  }
+  .fiba-carousel .carousel-prev { left: 8px; }
+  .fiba-carousel .carousel-next { right: 8px; }
+  .fiba-carousel .carousel-dots { bottom: 10px; }
+  .fiba-carousel .carousel-dot { width: 6px; height: 6px; }
+}
+
+@media (max-width: 640px) {
+  .fiba-download-grid {
+    grid-template-columns: 1fr;
+  }
+  .fiba-dl-card { padding: 20px 18px; }
 }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<nav class="cs-nav" id="csNav">
-  <div class="container">
-    <a href="index.html" class="brand">
-      <span class="brand-mark">QOL<span>2K</span></span>
-      <span class="brand-sub">Quality of Life Mods</span>
-    </a>
-  </div>
-</nav>
+<div id="site-nav"></div>
 
-<main>
-  <section class="cs-hero">
-    <div class="cs-hero-bg"></div>
-    <div class="cs-hero-inner reveal is-visible">
-      <p class="tagline">FIBA 2K Mod Archive</p>
-      <h1>Coming <span>Soon</span></h1>
-      <div class="cs-divider"></div>
-      <p>We're building the FIBA 2K mod archive for QOL2K. International basketball modifications, tournament content, and global rosters are on the way. Follow the Facebook page to stay updated.</p>
-      <div class="cs-actions">
-        <a href="index.html" class="btn-home">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9"/><path d="M5 10v9a1 1 0 001 1h3v-5h6v5h3a1 1 0 001-1v-9"/></svg>
-          Back to Home
-        </a>
-        <a href="https://www.facebook.com/share/1CEVisA8rs/" class="btn-fb" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M14 13.5h2.5l1-4H14v-2c0-1.03 0-2 2-2h1.5V2.14C17.17 2.1 15.9 2 14.6 2 11.9 2 10 3.66 10 6.7v2.8H7v4h3V22h4v-8.5z"/></svg>
-          Follow on Facebook
-        </a>
+<main id="main">
+
+  <!-- Hero Section -->
+  <section class="fiba-hero">
+    <div class="fiba-hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <p class="tagline">FIBA 2K — Complete Conversion</p>
+      <h1>International Basketball,<br>in NBA 2K14</h1>
+      <p class="hero-sub">A complete FIBA conversion mod that brings international basketball to NBA 2K14 — FIBA cyberfaces, tournament scoreboards, global courts, authentic jerseys, and everything you need for the ultimate international experience.</p>
+      <div class="hero-actions">
+        <a href="#downloads" class="btn btn-primary">Browse Downloads</a>
+        <a href="https://www.facebook.com/share/1CEVisA8rs/" class="btn btn-secondary" target="_blank" rel="noopener">Visit Facebook Page</a>
       </div>
     </div>
   </section>
+
+  <!-- Stats Strip -->
+  <div class="fiba-stats" id="fibaStats"></div>
+
+  <!-- Download NBA 2K14 Base Game -->
+  <section class="section-pad n2k-download-base fiba-download-base">
+    <div class="container">
+      <div class="n2k-download-card reveal">
+        <div class="n2k-download-card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v8"/>
+            <path d="M8 10l4 4 4-4"/>
+            <path d="M6 18h12"/>
+          </svg>
+        </div>
+        <p class="eyebrow">Get Started</p>
+        <h2>Download NBA 2K14</h2>
+        <p>Don&rsquo;t have NBA 2K14 installed yet? Download the base game first before installing any FIBA 2K or other community mods. A clean NBA 2K14 installation is recommended for the best modding experience.</p>
+        <div class="n2k-download-actions">
+          <a href="https://www.mediafire.com/file/jsaeyus8kqc0vrr/NBA2K14.rar/file" class="btn btn-primary" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+            Download NBA 2K14
+          </a>
+        </div>
+        <p class="n2k-download-note">Required for all NBA 2K14-based mods including FIBA 2K.</p>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Screenshots Gallery -->
+  <section class="section-pad section-alt" id="screenshots">
+    <div class="container">
+      <div class="fiba-section-head reveal">
+        <p class="eyebrow fiba-eyebrow">Screenshots</p>
+        <h2>FIBA 2K In-Game Previews</h2>
+        <p>See the FIBA 2K mod in action. Click any screenshot to view it full-size.</p>
+      </div>
+
+      <div class="fiba-carousel reveal" id="fibaCarousel" role="region" aria-label="FIBA 2K screenshots" aria-roledescription="carousel">
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide"><a href="images/FIBA 1.png" target="_blank" rel="noopener"><img src="images/FIBA 1.png" alt="FIBA 2K screenshot 1" loading="lazy"></a></div>
+          <div class="carousel-slide"><a href="images/FIBA 2.png" target="_blank" rel="noopener"><img src="images/FIBA 2.png" alt="FIBA 2K screenshot 2" loading="lazy"></a></div>
+          <div class="carousel-slide"><a href="images/FIBA 3.png" target="_blank" rel="noopener"><img src="images/FIBA 3.png" alt="FIBA 2K screenshot 3" loading="lazy"></a></div>
+          <div class="carousel-slide"><a href="images/FIBA 4.png" target="_blank" rel="noopener"><img src="images/FIBA 4.png" alt="FIBA 2K screenshot 4" loading="lazy"></a></div>
+          <div class="carousel-slide"><a href="images/FIBA 5.png" target="_blank" rel="noopener"><img src="images/FIBA 5.png" alt="FIBA 2K screenshot 5" loading="lazy"></a></div>
+          <div class="carousel-slide"><a href="images/FIBA 6.png" target="_blank" rel="noopener"><img src="images/FIBA 6.png" alt="FIBA 2K screenshot 6" loading="lazy"></a></div>
+          <div class="carousel-slide"><a href="images/FIBA 7.png" target="_blank" rel="noopener"><img src="images/FIBA 7.png" alt="FIBA 2K screenshot 7" loading="lazy"></a></div>
+          <div class="carousel-slide"><a href="images/FIBA 8.png" target="_blank" rel="noopener"><img src="images/FIBA 8.png" alt="FIBA 2K screenshot 8" loading="lazy"></a></div>
+          <div class="carousel-slide"><a href="images/FIBA 9.png" target="_blank" rel="noopener"><img src="images/FIBA 9.png" alt="FIBA 2K screenshot 9" loading="lazy"></a></div>
+        </div>
+        <button class="carousel-btn carousel-prev" id="carouselPrev" aria-label="Previous screenshot">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="carousel-btn carousel-next" id="carouselNext" aria-label="Next screenshot">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Screenshot navigation"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download Section -->
+  <section class="section-pad" id="downloads">
+    <div class="container">
+      <div class="fiba-section-head reveal">
+        <p class="eyebrow fiba-eyebrow">Download Archive</p>
+        <h2>FIBA 2K Mod Files</h2>
+        <p>Everything you need in one place. Grab the complete FIBA 2K mega pack with all files included — install and play.</p>
+      </div>
+
+      <div class="fiba-download-grid reveal">
+
+        <!-- FIBA 2K Mega Pack -->
+        <div class="fiba-dl-card wide">
+          <div class="fiba-dl-card-label">All-in-One</div>
+          <h3>FIBA 2K Mega Pack</h3>
+          <p>The complete FIBA 2K conversion mod in one download — includes all cyberfaces, courts, jerseys, scoreboards, globals, frontend, and every other file you need. Just download, extract, and play.</p>
+          <div class="fiba-dl-actions">
+            <a href="https://exe.io/fibamega" class="fiba-dl-btn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+              Download FIBA 2K Mega Pack
+            </a>
+          </div>
+        </div>
+
+        <!-- FIBA 2K Roster -->
+        <div class="fiba-dl-card wide">
+          <div class="fiba-dl-card-label">Roster</div>
+          <h3>FIBA 2K Roster File</h3>
+          <p>The official FIBA 2K roster file with all international teams, updated player rosters, and correct lineups for the complete FIBA tournament experience.</p>
+          <div class="fiba-dl-actions">
+            <a href="https://exe.io/fibaros" class="fiba-dl-btn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+              Download FIBA 2K Roster
+            </a>
+          </div>
+        </div>
+
+        <!-- FIBA Fantasy 2028 Roster -->
+        <div class="fiba-dl-card wide">
+          <div class="fiba-dl-card-label">Fantasy Roster</div>
+          <h3>FIBA Fantasy 2028 Roster</h3>
+          <p>A special fantasy roster project envisioning the 2028 Olympic Games, featuring updated Team USA and Gilas Pilipinas lineups, rising international stars, and the next generation of basketball talent. With legendary veterans giving way to a new era, this roster offers a fresh look at the future of global competition.</p>
+          <div class="fiba-roster-detail">
+            <div class="fiba-roster-team">
+              <h4>USA 2028</h4>
+              <ul>
+                <li><strong>PG:</strong> Haliburton, Cunningham, Maxey</li>
+                <li><strong>SG:</strong> Anthony Edwards, Devin Booker</li>
+                <li><strong>SF:</strong> Jayson Tatum, Jalen Williams</li>
+                <li><strong>PF:</strong> Cooper Flagg, Paolo Banchero</li>
+                <li><strong>C:</strong> Bam Adebayo, Chet Holmgren, Evan Mobley</li>
+              </ul>
+            </div>
+            <div class="fiba-roster-team">
+              <h4>Gilas Pilipinas</h4>
+              <ul>
+                <li>Dylan Harper</li>
+                <li>Jordan Clarkson</li>
+                <li>Jalen Green</li>
+                <li>Jared McCain</li>
+              </ul>
+            </div>
+          </div>
+          <div class="fiba-dl-actions">
+            <a href="https://exe.io/fibaros28" class="fiba-dl-btn" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>
+              Download FIBA Fantasy 2028 Roster
+            </a>
+          </div>
+        </div>
+
+      </div><!-- /fiba-download-grid -->
+
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <section class="footer-cta fiba-cta reveal">
+    <div class="container">
+      <h2>Play FIBA 2K Today</h2>
+      <p>Bring international basketball to NBA 2K14. All FIBA mod files are ready to download, extract, and play.</p>
+      <div class="cta-actions">
+        <a href="#downloads" class="btn btn-primary">Get the Mega Pack</a>
+        <a href="https://www.facebook.com/share/1CEVisA8rs/" class="btn btn-secondary" target="_blank" rel="noopener">Follow on Facebook</a>
+        <a href="index.html" class="btn btn-secondary">Back to QOL2K</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Credits -->
+  <div id="site-credits"></div>
+
 </main>
 
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
 <script>
-  /* Sticky shadow */
-  var nav = document.getElementById("csNav");
-  window.addEventListener("scroll", function() {
-    if (window.scrollY > 8) nav.classList.add("is-scrolled");
-    else nav.classList.remove("is-scrolled");
-  }, { passive: true });
+  qol2kRenderNav("fiba2k", "portal", "fiba2k");
+  qol2kRenderFooter();
+  qol2kRenderCredits("site-credits", {
+    text: 'FIBA 2K is a community conversion mod for NBA 2K14. Created with respect for international basketball and the global modding community. Full credits to the modders who contributed assets, tools, and support.',
+    list: ["Wolfy / EL2K21", "Medevenx", "Mackubex", "Bryan Emata", "ZK30", "Alexicon2K", "Chasedown", "PandaGraphic_", "RHS Serrano", "James Blake", "Baypel2K", "JAZ", "Dodzki", "Icegfire2K", "MonJoe", "JNH Mods", "Heiner2K", "DOCSAM", "Sync2K", "KemikoL2K", "JunKown2K", "Howard Galanga", "2KHoops", "Kenneth Oriana", "Alex2K", "Levi2K", "Jomito2K", "Eddie2K", "SP2H", "EBTK", "Joker", "Cissa2K", "Matthew2K", "Arguelle2K", "ERE", "Kamatis2K", "Unnamed2K", "Wilson2K", "DT2K", "ONESPORTS", "Community Contributors"]
+  });
+
+  // Render FIBA stats inline
+  document.getElementById("fibaStats").innerHTML =
+    '<div class="fiba-stat reveal">' +
+      '<span class="num">3</span>' +
+      '<span class="label">Download Packs</span>' +
+    '</div>' +
+    '<div class="fiba-stat reveal">' +
+      '<span class="num">FIBA</span>' +
+      '<span class="label">Mega Conversion</span>' +
+    '</div>' +
+    '<div class="fiba-stat reveal">' +
+      '<span class="num">2028</span>' +
+      '<span class="label">Fantasy Roster</span>' +
+    '</div>' +
+    '<div class="fiba-stat reveal">' +
+      '<span class="num">9</span>' +
+      '<span class="label">Screenshots</span>' +
+    '</div>';
+
+  qol2kInitCarousel("fibaCarousel");
+  qol2kInitReveal();
 </script>
 </body>
 </html>

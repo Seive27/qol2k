@@ -33,7 +33,7 @@ const QOL2K_GAME_HUBS = [
     key: "fiba2k",
     title: "FIBA 2K",
     desc: "International basketball modifications and tournament content.",
-    btn: "Coming Soon",
+    btn: "Explore FIBA 2K",
     href: "fiba2k.html",
     color: "fiba2k"
   }
